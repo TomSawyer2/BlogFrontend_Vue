@@ -1,12 +1,15 @@
 <template>
   <div class="home">
-    <img class="web_bg" src="https://youimg1.c-ctrip.com/target/1A091a00000196zd74F49.jpg">
-    <div>
+    <transition name="slide-fade">
+      <img class="web_bg" src="https://youimg1.c-ctrip.com/target/1A091a00000196zd74F49.jpg">
+    </transition>
+      <div>
 
-      <a-spin style="margin-top: 380px">
-        <a-icon slot="indicator" type="loading" style="font-size: 150px" spin />
-      </a-spin>
-    </div>
+        <a-spin style="margin-top: 380px">
+          <a-icon slot="indicator" type="loading" style="font-size: 150px" spin />
+        </a-spin>
+      </div>
+    
   </div>
 </template>
 
@@ -21,7 +24,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.$router.push('/index')
-		}, 1000)
+		}, 2000)
   }
 }
 </script>
@@ -42,5 +45,15 @@ export default {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-position: center 0;
+}
+.slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
