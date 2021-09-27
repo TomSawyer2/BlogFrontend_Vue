@@ -15,6 +15,7 @@ const URL = {
   register: "/register",
   login: "/login",
   getAllArticle: "/getAllArticle",
+  getArticleById: "/getArticleById",
   updateArticle: "/updateArticle",
   deleteArticle: "/deleteArticle",
   addArticle: "/addArticle",

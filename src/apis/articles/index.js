@@ -17,3 +17,7 @@ export function getAllArticle() {
     return axios.post(URL.getAllArticle);
 }
 
+export function getArticleById(params) {
+    return axios.post(URL.getArticleById, params);
+}
+

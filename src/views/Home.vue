@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <transition name="slide-fade">
+    <transition name="slide-fade-main">
       <img class="web_bg" src="https://youimg1.c-ctrip.com/target/1A091a00000196zd74F49.jpg">
     </transition>
       <div>
@@ -46,14 +46,15 @@ export default {
   -o-background-size: cover;
   background-position: center 0;
 }
-.slide-fade-enter-active {
-  transition: all 1s ease;
+.slide-fade-main-enter-active {
+  transition: all .8s ease;
 }
-.slide-fade-leave-active {
+.slide-fade-main-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-to
+.slide-fade-main-enter, .slide-fade-main-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {
   opacity: 0;
+  transform: translateY(0px);
 }
 </style>

@@ -2,23 +2,19 @@
     <div>
         <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back"/>
         <a-form :label-col="labelCol" :wrapper-col="wrapperCol" class="mainBox" :style="{height: height + 'px'}">
-        
             <a-form-item label="标题" class="innerBox" style="margin-top: 50px">
                 <a-input allow-clear placeholder="暂无" v-model="formData.title"/>
             </a-form-item>
-            <a-form-item label="标签" class="innerBox">
-                <a-input allow-clear placeholder="暂无" v-model="formData.tags"/>
-            </a-form-item>
-
             <v-md-editor v-model="formData.content" style="position: fixed; bottom: 0px" height="400px" @save="submit"></v-md-editor>
         </a-form>
     </div>
 </template>
 
 <script>
-import { addArticle } from "../apis";
+import { getArticleById, updateArticle } from "../apis";
 export default {
-    name: 'AddArticle',
+    name: 'EditArticle',
+
     data() {
         return {
             formData: {
@@ -40,7 +36,7 @@ export default {
     methods: {
         async submit() {
             if(this.formData.title != "") {
-                await addArticle(this.formData)
+                await updateArticle(this.formData)
                     .then((res) => {
                         console.log(res);
                         this.$router.push("/index");
@@ -58,8 +54,17 @@ export default {
             this.$router.push("/index");
         }
     },
-    mounted() {
+    async mounted() {
         this.height = document.body.clientHeight;
+        console.log(this.$route.params.id);
+        await getArticleById({ id: this.$route.params.id })
+            .then((res) => {
+                console.log(res);
+                this.formData = res.data.data[0];
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 }
 </script>
