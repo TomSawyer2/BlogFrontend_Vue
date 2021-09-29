@@ -3,10 +3,10 @@ export const CONTENT_TYPE = "application/json";
 
 let baseURL = "";
 if (process.env.NODE_ENV === "development") {
-  baseURL = "http://127.0.0.1:8085/api";
+  baseURL = "http://175.24.30.102:4000/api";
   // dev
 } else {
-  baseURL = "http://127.0.0.1:8085/api";
+  baseURL = "http://175.24.30.102:4000/api";
   // build
 }
 export default baseURL;

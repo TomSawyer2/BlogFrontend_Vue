@@ -1,7 +1,7 @@
 <template>
     <div>
         <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back"/>
-        <a-form :label-col="labelCol" :wrapper-col="wrapperCol" class="mainBox" :style="{height: height + 'px'}">
+        <a-form :label-col="labelCol" :wrapper-col="wrapperCol" class="mainBox detailScoped" :style="{height: height + 'px'}">
         
             <a-form-item label="标题" class="innerBox" style="margin-top: 50px">
                 <a-input allow-clear placeholder="暂无" v-model="formData.title"/>
@@ -77,5 +77,8 @@ export default {
   position: fixed;
   left: 20px;
   top: 20px;
+}
+.detailScoped {
+    text-align: justify;
 }
 </style>
