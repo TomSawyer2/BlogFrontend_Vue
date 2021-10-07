@@ -2,36 +2,41 @@
   <div class="gutter-example" v-if="show">
     <NavigationBar /> 
     <a-row type="flex" justify="center">
-      <a-col :span="16">
+      <a-col :span="14">
         <div style="margin-top: 100px">
           <Article style="display: flex; justify-content: center"/>
         </div>
       </a-col>
-      <a-col :span="4">
+      <a-col :span="5">
         <div style="margin-top: 100px">
-          col-4
+          <SideBar style="display: flex; justify-content: center"/>
         </div>
       </a-col>
     </a-row>
-    <a-button shape="circle" icon="plus" size="large" class="addArticleBtn" @click="addArticle"/>
+    <a-button v-if="addBtnShow" shape="circle" icon="plus" size="large" class="addArticleBtn" @click="addArticle"/>
   </div>
 </template>
 
 <script>
 import NavigationBar from '@/components/NavigationBar/NavigationBar.vue';
 import Article from '@/components/Article/Article.vue';
+import SideBar from '@/components/SideBar/SideBar.vue';
 export default {
   name: 'Index',
-  components: { NavigationBar, Article },
+  components: { NavigationBar, Article, SideBar },
   data() {
     return {
       show: false,
+      addBtnShow: false,
     }
   },
   mounted() {
     setTimeout(() => {
       this.show = true;
 		}, 1000)
+    setTimeout(() => {
+      this.addBtnShow = true;
+		}, 2000)
   },
   methods: {
     addArticle () {
