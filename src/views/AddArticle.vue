@@ -24,7 +24,8 @@ export default {
             formData: {
                 title: "",
                 content: "",
-                tags: ""
+                tags: "",
+                update_time: "",
             },
             labelCol: {
                 xs: { span: 24 },
@@ -40,6 +41,15 @@ export default {
     methods: {
         async submit() {
             if(this.formData.title != "") {
+                // 获取时间
+                var nowDate = new Date();
+                var year = nowDate.getFullYear();
+                var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1) : nowDate.getMonth() + 1;
+                var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
+                var hour = nowDate.getHours() < 10 ? "0" + nowDate.getHours() : nowDate.getHours();
+                var minute = nowDate.getMinutes() < 10 ? "0" + nowDate.getMinutes() : nowDate.getMinutes();
+                var dateStr = year + "-" + month + "-" + day + " " + hour + ":" + minute;
+                this.formData.update_time = dateStr;
                 await addArticle(this.formData)
                     .then((res) => {
                         console.log(res);

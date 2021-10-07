@@ -4,7 +4,6 @@
       <img class="web_bg" src="https://youimg1.c-ctrip.com/target/1A091a00000196zd74F49.jpg">
     </transition>
       <div>
-
         <a-spin style="margin-top: 380px">
           <a-icon slot="indicator" type="loading" style="font-size: 150px" spin />
         </a-spin>
