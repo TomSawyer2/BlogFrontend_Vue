@@ -14,7 +14,20 @@ import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
 import '@kangc/v-md-editor/lib/theme/style/github.css';
 
 // highlightjs
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
+
+import javascript from 'highlight.js/lib/languages/javascript';
+import sql from 'highlight.js/lib/languages/sql';
+import python from 'highlight.js/lib/languages/python';
+import css from 'highlight.js/lib/languages/css';
+import json from 'highlight.js/lib/languages/json';
+
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('sql', sql);
+hljs.registerLanguage('python', python);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('json', json);
+
 
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import createTipPlugin from '@kangc/v-md-editor/lib/plugins/tip/index';
