@@ -1,14 +1,16 @@
 <template>
     <div>
-        <a-card style="" class="mainCard" hoverable>
+        <a-card class="mainCard" hoverable>
+        <a-skeleton active :loading="loading" avatar>
             <a-card hoverable class="articles" v-for="(item, index) in items" :key="index">
-                <a-card-meta :title='item.title' :description='item.briefContent' @click="toDetail(item)">
+                <a-card-meta @click="toDetail(item)">
                     <a-avatar
                         slot="avatar"
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                        src="http://175.24.30.102:8080/pics/venti.jpg"
                     />
+                    <a slot="title" >{{ item.title }}</a>
                 </a-card-meta>
-                <a-row type="flex" justify="end" style="margin-top: 10px">
+                <a-row type="flex" justify="end" style="margin-top: 30px">
                     <a-col :offset="1">
                         {{item.update_time ? item.update_time : ""}}
                     </a-col>
@@ -22,20 +24,16 @@
                         <a-icon key="edit" type="edit" style="fontSize: 18px" @click="toEdit(item)"/>
                     </a-col>
                     <a-col :offset="1">
-                        <a-icon key="delete" type="delete" style="fontSize: 18px" @click="openDeleteDialog(item)"/>
-                        <a-modal v-model="deleteDialog" title="Title" on-ok="handleOk">
-                            <template slot="footer">
-                                <a-button key="back" @click="handleCancel">
-                                    返回
-                                </a-button>
-                                <a-button key="submit" type="primary" :loading="loading" @click="handleOk()">
-                                    确定
-                                </a-button>
+                        <a-popover trigger="click">
+                            <template slot="content">
+                                <a slot="content" @click="deleteArticleFunc(item)">删除</a>
                             </template>
-                            </a-modal>
+                            <a-icon key="delete" type="delete" style="fontSize: 18px" />
+                        </a-popover>
                     </a-col>
                 </a-row>
             </a-card>
+            </a-skeleton>
         </a-card>
     </div>
 </template>
@@ -48,7 +46,7 @@ export default {
         return {
             items: [],
             deleteDialog: false,
-            loading: false,
+            loading: true,
             deleteItem: {},
         }
     },
@@ -64,28 +62,20 @@ export default {
                     }
                 }
             })
+            this.loading = false;
         } catch(err) {
             console.log(err);
         }
     },
     methods: {
-        openDeleteDialog(item) {
-            this.deleteItem = item;
-            this.deleteDialog = true;
-        },
-        async handleOk() {
+        async deleteArticleFunc(item) {
             try{
-                await deleteArticle({id: this.deleteItem.id});
+                await deleteArticle({id: item.id});
                 this.$message.success("删除成功！");
-                this.deleteDialog = false;
-                this.deleteItem = {};
                 this.items = (await getAllArticle()).data.data;
             } catch(err) {
                 this.$message.error("发生了一些错误");
             }
-        },
-        handleCancel() {
-            this.deleteDialog = false;
         },
         toEdit(item) {
             this.$router.push({path: "/editArticle", name: "EditArticle", params: { id: item.id }});

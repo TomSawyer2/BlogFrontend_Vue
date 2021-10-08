@@ -8,9 +8,11 @@
         </div>
       </a-col>
       <a-col :span="5">
-        <div style="margin-top: 100px">
-          <SideBar style="display: flex; justify-content: center"/>
-        </div>
+        <a-affix :offset-top="100">
+          <div style="width: 100%">
+            <SideBar style="justify-content: center"/>
+          </div>
+        </a-affix>
       </a-col>
     </a-row>
     <a-button v-if="addBtnShow" shape="circle" icon="plus" size="large" class="addArticleBtn" @click="addArticle"/>

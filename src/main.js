@@ -32,6 +32,9 @@ import createLineNumbertPlugin from '@kangc/v-md-editor/lib/plugins/line-number/
 
 VueMarkdownEditor.use(createLineNumbertPlugin());
 
+import vcolorpicker from 'vcolorpicker'
+Vue.use(vcolorpicker)
+
 new Vue({
   router,
   store,

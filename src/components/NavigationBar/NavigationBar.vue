@@ -19,9 +19,6 @@
                                 首页
                             </a-menu-item>
                             <a-menu-item key="2">
-                                分类
-                            </a-menu-item>
-                            <a-menu-item key="3">
                                 个人中心
                             </a-menu-item>
                         </a-menu>
