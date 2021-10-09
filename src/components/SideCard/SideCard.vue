@@ -1,10 +1,10 @@
 <template>
     <div>
         <p class="title">{{ articleDetail.title }}</p>
-        <div style="display: flex; justify-content: center; flex-wrap:wrap;">
+        <div style="display: flex; justify-content: center; flex-wrap: wrap">
             <span v-for="(tag, index) in articleDetail.tagsForShow" :key="index">
                 <a-tag color="blue" class="tags">
-                    {{ tag }}
+                    {{ tag ? tag : "暂无" }}
                 </a-tag>
             </span>
         </div>
