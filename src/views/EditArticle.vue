@@ -2,9 +2,14 @@
     <div>
         <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back"/>
         <a-form :label-col="labelCol" :wrapper-col="wrapperCol" class="mainBox detailScoped" :style="{height: height + 'px'}">
-            <a-form-item label="标题" class="innerBox" style="margin-top: 50px">
+            <a-form-item label="标题" class="innerBox" style="margin-top: 35px">
                 <a-input allow-clear placeholder="暂无" v-model="formData.title"/>
             </a-form-item>
+
+            <a-form-item label="简介" class="innerBox">
+                <a-input allow-clear placeholder="暂无" v-model="formData.brief" maxLength="20"/>
+            </a-form-item>
+
             <a-form-item label="标签">
                 <a-checkbox-group
                     v-model="formData.tags"
@@ -40,9 +45,11 @@ export default {
     data() {
         return {
             formData: {
+                id: "",
                 title: "",
                 content: "",
-                tags: []
+                tags: [],
+                brief: "",
             },
             labelCol: {
                 xs: { span: 24 },
@@ -66,8 +73,7 @@ export default {
         async submit() {
             if(this.formData.title != "") {
                 await updateArticle(this.formData)
-                    .then((res) => {
-                        console.log(res);
+                    .then(() => {
                         this.$router.push("/index");
                         this.$message.success("文章更新成功");
                     })
@@ -84,7 +90,6 @@ export default {
         },
         async addTagFunc() {
             try{
-                console.log(this.newTag);
                 await addTag({name: this.newTag.name, color: this.newTag.color});
                 this.$message.success("添加标签成功！");
                 this.visible = false;
@@ -110,12 +115,14 @@ export default {
     },
     async mounted() {
         this.height = document.body.clientHeight;
-        console.log(this.$route.params.id);
         await getArticleById({ id: this.$route.params.id })
             .then((res) => {
                 console.log(res);
-                this.formData = res.data.data[0];
-                this.formData.tags = res.data.data[0].split('-');
+                this.formData.tags = res.data.data[0].tags.split('-');
+                this.formData.title = res.data.data[0].title;
+                this.formData.content = res.data.data[0].content;
+                this.formData.brief = res.data.data[0].brief;
+                this.formData.id = res.data.data[0].id;
             })
             .catch((err) => {
                 console.log(err);
@@ -138,6 +145,7 @@ export default {
   position: fixed;
   left: 20px;
   top: 20px;
+  z-index: 1000;
 }
 .detailScoped {
     text-align: justify;

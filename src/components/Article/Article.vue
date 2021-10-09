@@ -1,40 +1,54 @@
 <template>
     <div>
-        <a-card class="mainCard" hoverable>
-        <a-skeleton active :loading="loading" avatar>
-            <a-card hoverable class="articles" v-for="(item, index) in items" :key="index">
-                <a-card-meta @click="toDetail(item)">
-                    <a-avatar
-                        slot="avatar"
-                        src="http://175.24.30.102:8080/pics/venti.jpg"
-                    />
-                    <a slot="title" >{{ item.title }}</a>
-                </a-card-meta>
-                <a-row type="flex" justify="end" style="margin-top: 30px">
-                    <a-col :offset="1">
-                        {{item.update_time ? item.update_time : ""}}
-                    </a-col>
-                    <a-col :offset="1">
-                        <a-icon key="like" type="like" style="fontSize: 18px"/>
-                    </a-col>
-                    <a-col :offset="1">
-                        <a-icon key="message" type="message" style="fontSize: 18px" />
-                    </a-col>
-                    <a-col :offset="1">
-                        <a-icon key="edit" type="edit" style="fontSize: 18px" @click="toEdit(item)"/>
-                    </a-col>
-                    <a-col :offset="1">
-                        <a-popover trigger="click">
-                            <template slot="content">
-                                <a slot="content" @click="deleteArticleFunc(item)">删除</a>
-                            </template>
-                            <a-icon key="delete" type="delete" style="fontSize: 18px" />
-                        </a-popover>
-                    </a-col>
-                </a-row>
-            </a-card>
+        <div class="mainCard">
+            <a-skeleton active :loading="loading" avatar>
+                <a-timeline pending="没有更多内容了~~" :reverse="reverse" class="finalDot">
+                    <a-timeline-item v-for="(item, index) in items" :key="index">
+                        <p class="time" style="margin-left: 20px">{{ item.update_time ? item.update_time : "" }}</p>
+                        <a-card hoverable class="articles" style="margin-left: 20px">
+                            <a-card-meta @click="toDetail(item)">
+                                <a-avatar
+                                    slot="avatar"
+                                    :size="40"
+                                    src="http://175.24.30.102:8080/pics/venti.jpg"
+                                />
+                                <a slot="title" style="display: flex; font-size: 18px; margin-left: 30px">{{ item.title }}</a>
+                                <a slot="description" style="display: flex; font-size: 15px; margin-left: 30px; color: black">{{ item.brief ? item.brief : "暂无简介~" }}</a>
+                            </a-card-meta>
+                            <a-row type="flex" justify="start" style="margin-top: 15px; margin-left: 85px;">
+                                <a-col>
+                                    <span v-for="(tag, index) in item.tagsForShow" :key="index">
+                                        <a-tag color="blue" class="tags">
+                                            {{tag}}
+                                        </a-tag>
+                                    </span>
+                                </a-col>
+                            </a-row>
+                            <a-divider class="divider"/>
+                            <a-row type="flex" justify="end" style="margin-top: 10px">
+                                <a-col :offset="1">
+                                    <a-icon key="like" type="like" style="fontSize: 18px"/>
+                                </a-col>
+                                <a-col :offset="1">
+                                    <a-icon key="message" type="message" style="fontSize: 18px" />
+                                </a-col>
+                                <a-col :offset="1">
+                                    <a-icon key="edit" type="edit" style="fontSize: 18px" @click="toEdit(item)"/>
+                                </a-col>
+                                <a-col :offset="1">
+                                    <a-popover trigger="click">
+                                        <template slot="content">
+                                            <a slot="content" @click="deleteArticleFunc(item)">删除</a>
+                                        </template>
+                                        <a-icon key="delete" type="delete" style="fontSize: 18px" />
+                                    </a-popover>
+                                </a-col>
+                        </a-row>
+                        </a-card>
+                    </a-timeline-item>
+                </a-timeline>
             </a-skeleton>
-        </a-card>
+        </div>
     </div>
 </template>
 
@@ -42,6 +56,7 @@
 import { getAllArticle, deleteArticle } from "@/apis";
 export default {
     name: 'Article',
+    props: ['reverse'],
     data() {
         return {
             items: [],
@@ -54,12 +69,8 @@ export default {
         try {
             this.items = (await getAllArticle()).data.data;
             this.items.forEach(function (item) {
-                if(item.content) {
-                    if(item.content.length > 20) {
-                        item.briefContent = item.content.substr(0, 20) + '...';
-                    } else {
-                        item.briefContent = item.content;
-                    }
+                if(item.tags) {
+                    item.tagsForShow = item.tags.split('-');
                 }
             })
             this.loading = false;
@@ -98,8 +109,19 @@ export default {
     justify-content:  flex-end;
 }
 .articles {
-    margin-top: 30px;
+    margin-top: 5px;
     margin-bottom: 30px;
     justify-content: center;
+}
+.tags {
+	margin-bottom: 15px;
+	font-size: 15px; 
+}
+.ant-divider-horizontal {
+    margin-top: 10px;
+}
+.time {
+    display: flex;
+    margin-left: 10px;
 }
 </style>

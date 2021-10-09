@@ -4,7 +4,7 @@
     <a-row type="flex" justify="center">
       <a-col :span="14">
         <div style="margin-top: 100px">
-          <Article style="display: flex; justify-content: center"/>
+          <Article style="display: flex; justify-content: center" :reverse="reverseFather"/>
         </div>
       </a-col>
       <a-col :span="5">
@@ -15,6 +15,10 @@
         </a-affix>
       </a-col>
     </a-row>
+    <a-back-top class="toTopBtn">
+      <a-button shape="circle" icon="vertical-align-top" size="large"/>
+    </a-back-top>
+    <a-button v-if="addBtnShow" shape="circle" icon="sync" size="large" class="reverseBtn" @click="reverseTime"/>
     <a-button v-if="addBtnShow" shape="circle" icon="plus" size="large" class="addArticleBtn" @click="addArticle"/>
   </div>
 </template>
@@ -30,6 +34,7 @@ export default {
     return {
       show: false,
       addBtnShow: false,
+      reverseFather: false,
     }
   },
   mounted() {
@@ -43,6 +48,9 @@ export default {
   methods: {
     addArticle () {
       this.$router.push("/addArticle");
+    },
+    reverseTime() {
+      this.reverseFather = !this.reverseFather;
     }
   }
 }
@@ -62,7 +70,20 @@ export default {
 }
 .addArticleBtn {
   position: fixed;
-  right: 50px;
-  bottom: 50px;
+  z-index: 1000;
+  right: 40px;
+  bottom: 40px;
+}
+.reverseBtn {
+  position: fixed;
+  right: 40px;
+  z-index: 1000;
+  bottom: 100px;
+}
+.toTopBtn {
+  position: fixed;
+  right: 40px;
+  bottom: 160px;
+  z-index: 1000;
 }
 </style>

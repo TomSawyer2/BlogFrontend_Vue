@@ -1,16 +1,16 @@
 const CompressionPlugin = require('compression-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const IS_PROD = process.env.NODE_ENV === 'production'
 module.exports = {
   publicPath: "/",
   productionSourceMap: false,
-  // configureWebpack: {
-  //   plugins: [
+  configureWebpack: {
+    plugins: [
 
-  //     new BundleAnalyzerPlugin()
+      new BundleAnalyzerPlugin()
 
-  //   ]
-  // },
+    ],
+  },
   chainWebpack(config) {
     if (IS_PROD) {
       config.optimization.splitChunks({

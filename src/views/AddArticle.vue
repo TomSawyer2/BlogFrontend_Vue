@@ -3,8 +3,12 @@
         <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back"/>
         <a-form :label-col="labelCol" :wrapper-col="wrapperCol" class="mainBox detailScoped" :style="{height: height + 'px'}">
         
-            <a-form-item label="标题" class="innerBox" style="margin-top: 50px">
-                <a-input allow-clear placeholder="暂无" v-model="formData.title"/>
+            <a-form-item label="标题" class="innerBox" style="margin-top: 35px">
+                <a-input allow-clear placeholder="暂无" v-model="formData.title" maxLength="20"/>
+            </a-form-item>
+
+            <a-form-item label="简介" class="innerBox">
+                <a-input allow-clear placeholder="暂无" v-model="formData.brief"/>
             </a-form-item>
             
             <a-form-item label="标签">
@@ -45,6 +49,7 @@ export default {
                 content: "",
                 tags: [],
                 update_time: "",
+                brief: "",
             },
             labelCol: {
                 xs: { span: 24 },
@@ -141,6 +146,7 @@ export default {
   position: fixed;
   left: 20px;
   top: 20px;
+  z-index: 1000;
 }
 .detailScoped {
     text-align: justify;
