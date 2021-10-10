@@ -71,6 +71,30 @@ module.exports = {
             priority: 3,
             reuseExistingChunk: true,
             enforce: true
+          },
+          echarts: {
+            name: 'chunk-echarts',
+            test: /[\\/]node_modules[\\/]echarts[\\/]/,
+            chunks: 'initial',
+            priority: 3,
+            reuseExistingChunk: true,
+            enforce: true
+          },
+          echartsWordCloud: {
+            name: 'chunk-echarts-wordcloud',
+            test: /[\\/]node_modules[\\/]echarts-wordcloud[\\/]/,
+            chunks: 'initial',
+            priority: 3,
+            reuseExistingChunk: true,
+            enforce: true
+          },
+          atantdesign: {
+            name: 'chunk-@antdesign',
+            test: /[\\/]node_modules[\\/]@ant-design[\\/]/,
+            chunks: 'initial',
+            priority: 3,
+            reuseExistingChunk: true,
+            enforce: true
           }
         }
       })

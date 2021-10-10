@@ -11,7 +11,9 @@ export default {
 	data() {
 		return {
 			height: 100,
-			tags: []
+			tags: [],
+      cloudHeight: 100,
+      cloudWidth: 100,
 		}
 	},
   async mounted() {
@@ -21,6 +23,8 @@ export default {
 			console.log(err);
 		}
 		this.height = document.body.clientHeight;
+    this.cloudHeight = document.body.clientHeight - 100;
+    this.cloudWidth = document.body.clientWidth;
     this.initEcharts();
   },
   methods: {
@@ -63,7 +67,7 @@ export default {
             top: "center",
             right: null,
             bottom: null,
-            width: "600%",
+            width: "400%",
             height: "400%",
             //数据
             data: this.tags,
@@ -87,7 +91,7 @@ export default {
 	align-items: center;
 }
 .innerCloud {
-	width: 500px;
-	height: 500px;
+	width: 1000px;
+	height: 750px;
 }
 </style>

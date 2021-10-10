@@ -55,6 +55,19 @@ export default {
     setTimeout(() => {
       this.addBtnShow = true;
 		}, 2000)
+    if(this.haveTag == true) {
+      try{
+        this.articles = (await getArticleByTag({tag: this.tag.name})).data.data;
+        this.articles.forEach(function (item) {
+          if(item.tags) {
+            item.tagsForShow = item.tags.split('-');
+          }
+        })
+        this.loading = false;
+      } catch(err) {
+        console.log(err);
+      }
+    }
   },
   methods: {
     addArticle () {

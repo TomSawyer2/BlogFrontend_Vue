@@ -81,6 +81,9 @@ export default {
             this.$router.push({path: "/detail", name: "Detail", params: { id: item.id }});
         },
     },
+    mounted() {
+        this.items = this.articles;
+    },
     watch: {
         articles(newV) {
             this.items = newV;
