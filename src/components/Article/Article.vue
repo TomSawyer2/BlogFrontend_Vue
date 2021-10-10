@@ -56,26 +56,12 @@
 import { getAllArticle, deleteArticle } from "@/apis";
 export default {
     name: 'Article',
-    props: ['reverse'],
+    props: ['reverse', 'articles', 'loading'],
     data() {
         return {
             items: [],
             deleteDialog: false,
-            loading: true,
             deleteItem: {},
-        }
-    },
-    async mounted() {
-        try {
-            this.items = (await getAllArticle()).data.data;
-            this.items.forEach(function (item) {
-                if(item.tags) {
-                    item.tagsForShow = item.tags.split('-');
-                }
-            })
-            this.loading = false;
-        } catch(err) {
-            console.log(err);
         }
     },
     methods: {
@@ -94,6 +80,11 @@ export default {
         toDetail(item) {
             this.$router.push({path: "/detail", name: "Detail", params: { id: item.id }});
         },
+    },
+    watch: {
+        articles(newV) {
+            this.items = newV;
+        }
     }
 }
 </script>

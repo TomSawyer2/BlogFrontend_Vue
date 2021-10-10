@@ -1,15 +1,15 @@
 <template>
   <div class="gutter-example" v-if="show">
-    <NavigationBar /> 
+    <NavigationBar :current="currentTab"/> 
     <a-row type="flex" justify="center">
-      <a-col :span="14">
+      <a-col :span="13">
         <div style="margin-top: 100px">
-          <Article style="display: flex; justify-content: center" :reverse="reverseFather"/>
+          <Article style="display: flex; justify-content: center" :loading="loading" :reverse="reverseFather" :articles="articles"/>
         </div>
       </a-col>
-      <a-col :span="5">
+      <a-col :span="6">
         <a-affix :offset-top="100">
-          <div style="width: 100%">
+          <div style="width: 110%">
             <SideBar style="justify-content: center"/>
           </div>
         </a-affix>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { getAllArticle } from "@/apis";
 import NavigationBar from '@/components/NavigationBar/NavigationBar.vue';
 import Article from '@/components/Article/Article.vue';
 import SideBar from '@/components/SideBar/SideBar.vue';
@@ -35,15 +36,29 @@ export default {
       show: false,
       addBtnShow: false,
       reverseFather: false,
+      currentTab: ['1'],
+      articles: [],
+      loading: true,
     }
   },
-  mounted() {
+  async mounted() {
     setTimeout(() => {
       this.show = true;
 		}, 1000)
     setTimeout(() => {
       this.addBtnShow = true;
 		}, 2000)
+    try {
+      this.articles = (await getAllArticle()).data.data;
+      this.articles.forEach(function (item) {
+        if(item.tags) {
+            item.tagsForShow = item.tags.split('-');
+        }
+      })
+      this.loading = false;
+    } catch(err) {
+      console.log(err);
+    }
   },
   methods: {
     addArticle () {

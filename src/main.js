@@ -48,6 +48,10 @@ VueMarkdownEditor.use(createLineNumbertPlugin());
 import vcolorpicker from 'vcolorpicker'
 Vue.use(vcolorpicker)
 
+import echarts from 'echarts'
+require('echarts-wordcloud')
+Vue.prototype.$echarts = echarts
+
 new Vue({
   router,
   store,

@@ -21,3 +21,6 @@ export function getArticleById(params) {
     return axios.post(URL.getArticleById, params);
 }
 
+export function getArticleByTag(params) {
+    return axios.post(URL.getArticleByTag, params);
+}

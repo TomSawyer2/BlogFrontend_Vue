@@ -2,7 +2,7 @@
     <div>
         <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back"/>
         <a-form :label-col="labelCol" :wrapper-col="wrapperCol" class="mainBox detailScoped" :style="{height: height + 'px'}">
-            <a-form-item label="标题" class="innerBox" style="margin-top: 35px">
+            <a-form-item label="标题" class="innerBox" style="margin-top: 20px">
                 <a-input allow-clear placeholder="暂无" v-model="formData.title"/>
             </a-form-item>
 
@@ -32,7 +32,7 @@
                 </a-popover>
             </a-form-item>
 
-            <v-md-editor v-model="formData.content" style="position: fixed; bottom: 0px" height="400px" @save="submit"></v-md-editor>
+            <v-md-editor v-model="formData.content" style="position: fixed; bottom: 0px" height="330px" @save="submit"></v-md-editor>
         </a-form>
     </div>
 </template>
