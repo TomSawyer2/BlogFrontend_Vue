@@ -4,7 +4,7 @@
         <a-form :label-col="labelCol" :wrapper-col="wrapperCol" class="mainBox detailScoped" :style="{height: height + 'px'}">
         
         <a-form-item label="标题" class="innerBox" style="margin-top: 20px">
-            <a-input allow-clear placeholder="暂无" v-model="formData.title" maxLength="20"/>
+            <a-input allow-clear placeholder="暂无" v-model="formData.title" :maxLength='20'/>
         </a-form-item>
         <a-form-item label="简介" class="innerBox">
             <a-input allow-clear placeholder="暂无" v-model="formData.brief"/>
@@ -35,6 +35,17 @@
 
             <v-md-editor v-model="formData.content" style="position: fixed; bottom: 0px" height="330px" @save="submit"></v-md-editor>
         </a-form>
+        <a-modal v-model="visibleTemp" title="草稿箱" on-ok="handleOk">
+            <template slot="footer">
+                <a-button key="back" @click="handleCancel">
+                    否
+                </a-button>
+                <a-button key="submit" type="primary" :updateLoading="updateLoading" @click="handleOk">
+                    上传
+                </a-button>
+            </template>
+            <p>有未提交的内容，需要上传至草稿箱吗？</p>
+        </a-modal>
     </div>
 </template>
 
@@ -67,6 +78,8 @@ export default {
                 color: "#000000",
             },
             visible: false,
+            visibleTemp: false,
+            updateLoading: false,
         }
     },
     methods: {
@@ -96,11 +109,13 @@ export default {
             
         },
         back() {
-            this.$router.push("/index");
+            if(this.formData.title != "" || this.formData.content != "" || this.formData.brief != "") {
+                this.visibleTemp = true;
+            }
+            // this.$router.push("/index");
         },
         async addTagFunc() {
             try{
-                console.log(this.newTag);
                 await addTag({name: this.newTag.name, color: this.newTag.color});
                 this.$message.success("添加标签成功！");
                 this.visible = false;
@@ -124,6 +139,15 @@ export default {
             } catch(err) {
                 console.log(err);
             }
+        },
+        handleCancel() {
+            this.$router.push("/index");
+        },
+        async handleOk() {
+            this.$message.error("功能还未做完")
+            // try{
+            //     // await 
+            // }
         }
     },
     async mounted() {
