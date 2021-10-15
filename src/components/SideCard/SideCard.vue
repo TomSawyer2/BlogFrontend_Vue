@@ -14,7 +14,7 @@
             <a-avatar
                 slot="avatar"
                 :size="40"
-                src="http://175.24.30.102:8080/pics/venti.jpg"
+                src="https://tomsawyer2.xyz/pics/venti.jpg"
             />
             <span class="username">hanserena</span>
         </div>

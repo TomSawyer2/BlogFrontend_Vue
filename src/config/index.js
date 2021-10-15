@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === "development") {
   baseURL = "http://127.0.0.1:4000/api";
   // dev
 } else {
-  baseURL = "http://175.24.30.102:4000/api";
+  baseURL = "https://tomsawyer2.xyz:4000/api";
   // build
 }
 export default baseURL;

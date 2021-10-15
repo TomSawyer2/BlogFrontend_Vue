@@ -10,7 +10,7 @@
                                 <a-avatar
                                     slot="avatar"
                                     :size="40"
-                                    src="http://175.24.30.102:8080/pics/venti.jpg"
+                                    src="https://tomsawyer2.xyz/pics/venti.jpg"
                                 />
                                 <a slot="title" style="display: flex; font-size: 18px; margin-left: 30px">{{ item.title }}</a>
                                 <a slot="description" style="display: flex; font-size: 15px; margin-left: 30px; color: black">{{ item.brief ? item.brief : "暂无简介~" }}</a>
