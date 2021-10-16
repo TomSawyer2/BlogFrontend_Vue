@@ -53,6 +53,7 @@ export default {
     left: 40px;
     font-size: 30px;
     margin: 0px 0px;
+    display: none;
 }
 .tags {
 	margin-bottom: 15px;
@@ -90,6 +91,9 @@ export default {
     }
     .title {
         display: none;
+    }
+    .titleMobile {
+        display: block;
     }
     .divider {
         display: none;
