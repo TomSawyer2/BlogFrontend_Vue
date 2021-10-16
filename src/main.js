@@ -5,11 +5,9 @@ import store from './store'
 import './plugins/antd.js'
 import './plugins/editor.js'
 import './plugins/echarts.js'
+import './plugins/vcolorpicker.js'
 
 Vue.config.productionTip = false
-
-import vcolorpicker from 'vcolorpicker'
-Vue.use(vcolorpicker)
 
 new Vue({
   router,

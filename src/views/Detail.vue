@@ -29,30 +29,42 @@
 <script>
 import { getArticleById } from "../apis";
 import SideCard from "@/components/SideCard/SideCard.vue";
+import { setDetailId, getDetailId, removeDetailId } from "@/utils/storage.js";
 export default {
     name: 'Detail',
     components: { SideCard },
     data() {
         return {
             formData: {
+                id: "",
                 title: "",
                 content: "",
                 tags: "",
                 tagsForShow: []
             },
-            height: 100
+            height: 100,
+            id: -1
         }
     },
     methods: {
         back() {
             this.$router.push("/index");
+            removeDetailId();
         }
     },
     async mounted() {
+        this.id = this.$route.params.id ? this.$route.params.id : getDetailId();
+        if (this.id == -1) {
+            this.$router.push("/index");
+            removeDetailId();
+        } else {
+            setDetailId(this.id);
+        }
         this.height = document.body.clientHeight;
-        await getArticleById({ id: this.$route.params.id })
+        await getArticleById({ id: this.id })
             .then((res) => {
                 console.log(res);
+                setDetailId(this.id);
                 this.formData = res.data.data[0];
                 this.formData.tagsForShow = this.formData.tags.split('-');
             })

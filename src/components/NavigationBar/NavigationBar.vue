@@ -14,7 +14,7 @@
             <a-menu
               theme="light"
               mode="horizontal"
-							v-model="current"
+							v-model="currentLocal"
               :default-selected-keys="['1']"
               :style="{
                 lineHeight: '64px',
@@ -45,17 +45,20 @@ export default {
 	props: ['current'],
   data() {
     return {
-			// current: ['1'],
+			currentLocal: ['1']
 		};
   },
+  mounted() {
+    this.currentLocal = this.current;
+  },
 	watch: {
-		current(newV) {
+		currentLocal(newV) {
 			if (newV[0] == '1') {
-				this.$router.push("/index");
+				this.$router.push("/index").catch(() => {});
 			} else if (newV[0] == '2') {
-				this.$router.push("/categories");
+				this.$router.push("/categories").catch(() => {});
 			} else if (newV[0] == '3') {
-				this.$router.push("/index");
+				this.$router.push("/index").catch(() => {});
 			}
 		}
 	}

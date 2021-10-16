@@ -188,6 +188,9 @@ export default {
     bottom: 40px;
     z-index: 1000;
 }
+.MobileArticle {
+    display: none;
+}
 @media screen and (max-width: 800px) {
     .bottomBar {
         display: block;
