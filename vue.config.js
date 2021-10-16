@@ -1,13 +1,30 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const IS_PROD = process.env.NODE_ENV === 'production'
+const path = require('path');
+
 module.exports = {
+  css:{
+    loaderOptions:{
+      less:{
+        javascriptEnabled: true
+      }
+    }
+  },
   publicPath: "/",
   productionSourceMap: false,
   configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.join(__dirname, 'src'),
+        '@ant-design/icons/lib/dist$': path.join(__dirname, 'src/plugins/antdIcon.js')
+      }
+    },
     plugins: [
-
-      new BundleAnalyzerPlugin()
-
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        reportFilename: './report.html',
+        openAnalyzer: false
+      })
     ]
   },
   chainWebpack(config) {
@@ -90,6 +107,22 @@ module.exports = {
           atantdesign: {
             name: 'chunk-@antdesign',
             test: /[\\/]node_modules[\\/]@ant-design[\\/]/,
+            chunks: 'initial',
+            priority: 3,
+            reuseExistingChunk: true,
+            enforce: true
+          },
+          zrender: {
+            name: 'chunk-zrender',
+            test: /[\\/]node_modules[\\/]zrender[\\/]/,
+            chunks: 'initial',
+            priority: 3,
+            reuseExistingChunk: true,
+            enforce: true
+          },
+          vue: {
+            name: 'chunk-vue',
+            test: /[\\/]node_modules[\\/]vue[\\/]/,
             chunks: 'initial',
             priority: 3,
             reuseExistingChunk: true,

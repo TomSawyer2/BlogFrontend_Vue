@@ -1,16 +1,17 @@
 <template>
     <div>
         <p class="title">{{ articleDetail.title }}</p>
-        <div style="display: flex; justify-content: center; flex-wrap: wrap">
+        <div class="tags">
             <span v-for="(tag, index) in articleDetail.tagsForShow" :key="index">
                 <a-tag color="blue" class="tags">
                     {{ tag ? tag : "暂无" }}
                 </a-tag>
             </span>
         </div>
-        <p class="brief">{{ articleDetail.brief ? articleDetail.brief : "暂无简介~" }}</p>
-        <a-divider />
+        <span class="brief">{{ articleDetail.brief ? articleDetail.brief : "暂无简介~" }}</span>
+        <a-divider class="divider"/>
         <div class="personalInformation">
+            <p class="titleMobile">{{ articleDetail.title }}</p>
             <a-avatar
                 slot="avatar"
                 :size="40"
@@ -18,7 +19,7 @@
             />
             <span class="username">hanserena</span>
         </div>
-        <a-divider />
+        <a-divider class="divider"/>
     </div>
 </template>
 
@@ -47,6 +48,12 @@ export default {
     justify-content: center;
     font-size: 30px;
 }
+.titleMobile {
+    position: fixed;
+    left: 40px;
+    font-size: 30px;
+    margin: 0px 0px;
+}
 .tags {
 	margin-bottom: 15px;
 	font-size: 15px; 
@@ -65,5 +72,27 @@ export default {
     font-size: 20px;
     margin-left: 20px;
     align-content: center;
+}
+.tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+@media screen and (max-width : 1050px) {
+    .tags {
+        display: none;
+    }
+    .brief {
+        display: none;
+    }
+    .personalInformation {
+        justify-content: flex-end;
+    }
+    .title {
+        display: none;
+    }
+    .divider {
+        display: none;
+    }
 }
 </style>

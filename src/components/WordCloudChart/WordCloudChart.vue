@@ -48,18 +48,16 @@ export default {
             rotationRange: [0, 0],
             //随机生成字体颜色
             textStyle: {
-              normal: {
-                color: function() {
-                  return (
-                    "rgb(" +
-                    Math.round(Math.random() * 255) +
-                    ", " +
-                    Math.round(Math.random() * 255) +
-                    ", " +
-                    Math.round(Math.random() * 255) +
-                    ")"
-                  );
-                }
+              color: function() {
+                return (
+                  "rgb(" +
+                  Math.round(Math.random() * 255) +
+                  ", " +
+                  Math.round(Math.random() * 255) +
+                  ", " +
+                  Math.round(Math.random() * 255) +
+                  ")"
+                );
               }
             },
             //位置相关设置
@@ -92,6 +90,6 @@ export default {
 }
 .innerCloud {
 	width: 1000px;
-	height: 750px;
+	height: 600px;
 }
 </style>

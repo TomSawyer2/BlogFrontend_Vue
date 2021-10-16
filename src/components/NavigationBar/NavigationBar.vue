@@ -10,7 +10,7 @@
               <p style="font-size: 20px">hanserena</p>
             </div>
           </a-col>
-          <a-col :span="16">
+          <a-col :span="16" class="extraItems">
             <a-menu
               theme="light"
               mode="horizontal"
@@ -70,5 +70,13 @@ export default {
   background: rgba(255, 255, 255, 0.2);
   margin: 16px 28px 16px 0;
   float: left;
+}
+.extraItems {
+
+}
+@media screen and (max-width: 800px) {
+  .extraItems {
+    display: none;
+  }
 }
 </style>

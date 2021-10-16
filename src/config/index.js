@@ -3,7 +3,7 @@ export const CONTENT_TYPE = "application/json";
 
 let baseURL = "";
 if (process.env.NODE_ENV === "development") {
-  baseURL = "http://127.0.0.1:4000/api";
+  baseURL = "https://tomsawyer2.xyz:4000/api";
   // dev
 } else {
   baseURL = "https://tomsawyer2.xyz:4000/api";
