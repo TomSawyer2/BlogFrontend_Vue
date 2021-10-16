@@ -13,7 +13,7 @@ export default {
 			height: 100,
 			tags: [],
       cloudHeight: 100,
-      cloudWidth: 100,
+      cloudWidth: 100
 		}
 	},
   async mounted() {
@@ -36,7 +36,7 @@ export default {
       let option = {
         title: {
           text: "",
-          x: "center",
+          x: "center"
         },
         series: [
           {
@@ -59,8 +59,8 @@ export default {
                     Math.round(Math.random() * 255) +
                     ")"
                   );
-                },
-              },
+                }
+              }
             },
             //位置相关设置
             left: "center",
@@ -70,17 +70,17 @@ export default {
             width: "400%",
             height: "400%",
             //数据
-            data: this.tags,
-          },
-        ],
+            data: this.tags
+          }
+        ]
       };
       echartsWordcloud.setOption(option);
       //点击事件
       echartsWordcloud.on("click", function(e) {
 				that.$emit("tagData", e.data);
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

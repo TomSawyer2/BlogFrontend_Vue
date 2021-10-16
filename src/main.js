@@ -36,7 +36,7 @@ import '@kangc/v-md-editor/lib/plugins/tip/tip.css';
 VueMarkdownEditor.use(createTipPlugin());
 
 VMdEditor.use(githubTheme, {
-  Hljs: hljs,
+  Hljs: hljs
 });
 
 Vue.use(VMdEditor);

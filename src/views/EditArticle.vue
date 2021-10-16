@@ -49,15 +49,15 @@ export default {
                 title: "",
                 content: "",
                 tags: [],
-                brief: "",
+                brief: ""
             },
             labelCol: {
                 xs: { span: 24 },
-                sm: { span: 3 },
+                sm: { span: 3 }
             },
             wrapperCol: {
                 xs: { span: 24 },
-                sm: { span: 15 },
+                sm: { span: 15 }
             },
             height: 100,
             tags: [],
@@ -65,8 +65,8 @@ export default {
             addTagLoading: false,
             newTag: {
                 name: "",
-                color: "#000000",
-            },
+                color: "#000000"
+            }
         }
     },
     methods: {

@@ -8,7 +8,7 @@ const Axios = axios.create({
   baseURL: baseURL,
   timeout: TIMEOUT,
   headers: { "Content-Type": CONTENT_TYPE },
-  withCredentials: false,
+  withCredentials: false
 });
 
 // 请求拦截

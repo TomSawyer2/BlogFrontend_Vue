@@ -30,7 +30,7 @@ export default {
                 tags: "",
                 tagsForShow: []
             },
-            height: 100,
+            height: 100
         }
     },
     methods: {

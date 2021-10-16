@@ -61,7 +61,7 @@ export default {
         return {
             items: [],
             deleteDialog: false,
-            deleteItem: {},
+            deleteItem: {}
         }
     },
     methods: {
@@ -79,7 +79,7 @@ export default {
         },
         toDetail(item) {
             this.$router.push({path: "/detail", name: "Detail", params: { id: item.id }});
-        },
+        }
     },
     mounted() {
         this.items = this.articles;

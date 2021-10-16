@@ -45,7 +45,7 @@ export default {
       currentTab: ['2'],
       tag: this.$route.params.tag,
       haveTag: this.$route.params.tag ? true : false,
-      loading: true,
+      loading: true
     }
   },
   async mounted() {
@@ -58,7 +58,7 @@ export default {
     if(this.haveTag == true) {
       try{
         this.articles = (await getArticleByTag({tag: this.tag.name})).data.data;
-        this.articles.forEach(function (item) {
+        this.articles.forEach(function(item) {
           if(item.tags) {
             item.tagsForShow = item.tags.split('-');
           }
@@ -70,7 +70,7 @@ export default {
     }
   },
   methods: {
-    addArticle () {
+    addArticle() {
       this.$router.push("/addArticle");
     },
     reverseTime() {
@@ -91,7 +91,7 @@ export default {
         if(this.haveTag) {
           try{
             this.articles = (await getArticleByTag({tag: this.tag.name})).data.data;
-            this.articles.forEach(function (item) {
+            this.articles.forEach(function(item) {
               if(item.tags) {
                 item.tagsForShow = item.tags.split('-');
               }

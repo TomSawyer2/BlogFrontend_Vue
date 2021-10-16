@@ -38,7 +38,7 @@ export default {
       reverseFather: false,
       currentTab: ['1'],
       articles: [],
-      loading: true,
+      loading: true
     }
   },
   async mounted() {
@@ -50,7 +50,7 @@ export default {
 		}, 2000)
     try {
       this.articles = (await getAllArticle()).data.data;
-      this.articles.forEach(function (item) {
+      this.articles.forEach(function(item) {
         if(item.tags) {
             item.tagsForShow = item.tags.split('-');
         }
@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    addArticle () {
+    addArticle() {
       this.$router.push("/addArticle");
     },
     reverseTime() {

@@ -24,7 +24,7 @@ export default {
     data() {
         return {
 			tags: [],
-			loading: true,
+			loading: true
         }
     },
     methods: {

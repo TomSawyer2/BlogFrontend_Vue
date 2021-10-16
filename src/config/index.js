@@ -21,7 +21,7 @@ const URL = {
   addArticle: "/addArticle",
   getAllTags: "/getAllTags",
   addTag: "/addTag",
-  getArticleByTag: "/getArticleByTag",
+  getArticleByTag: "/getArticleByTag"
 };
 
 const ERROR_CODE = {
@@ -38,7 +38,7 @@ const ERROR_CODE = {
   TAG_EXIST: 11, // tag已存在
   GET_TAG_ERR: 12, // 获取所有tag失败
   QUERY_ARTICLE_ERR: 13, // 查询文章不存在
-  QUERY_ARTICLE_BY_TAG_ERR: 14, // 用tag查询文章失败
+  QUERY_ARTICLE_BY_TAG_ERR: 14 // 用tag查询文章失败
 };
 
 export { URL, ERROR_CODE };
