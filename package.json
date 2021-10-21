@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:init": "npm install prettier lint-staged husky -g",
+    "lint:fix": "npm run lint:prettier_fix && npm run lint:es_fix",
+    "lint:es": "eslint src/ --ext .js,.jsx,.vue",
+    "lint:es_fix": "eslint --fix src/ --ext .js,.jsx,.vue",
+    "lint:prettier": "prettier --check 'src/**/*.{js,jsx,vue,css,less,scss,sass}' --no-error-on-unmatched-pattern",
+    "lint:prettier_fix": "prettier --write 'src/**/*.{js,jsx,vue,css,less,scss,sass}' --no-error-on-unmatched-pattern"
   },
   "husky": {
     "hooks": {

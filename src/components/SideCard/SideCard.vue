@@ -1,25 +1,23 @@
 <template>
-    <div>
-        <p class="title">{{ articleDetail.title }}</p>
-        <div class="tags">
-            <span v-for="(tag, index) in articleDetail.tagsForShow" :key="index">
-                <a-tag color="blue" class="tags">
-                    {{ tag ? tag : "暂无" }}
-                </a-tag>
-            </span>
-        </div>
-        <span class="brief">{{ articleDetail.brief ? articleDetail.brief : "暂无简介~" }}</span>
-        <a-divider class="divider"/>
-        <div class="personalInformation">
-            <p class="titleMobile">{{ articleDetail.title }}</p>
-            <a-avatar
-                slot="avatar"
-                :size="40"
-                src="https://tomsawyer2.xyz/pics/venti.jpg"
-            />
-            <span class="username">hanserena</span>
-        </div>
-        <a-divider class="divider"/>
+    <div class="trans">
+        <transition-group name="slide-fade">
+            <p class="title" :key="6001">{{ articleDetail.title }}</p>
+            <div class="tags" :key="6002">
+                <span v-for="(tag, index) in articleDetail.tagsForShow" :key="index">
+                    <a-tag color="blue" class="tags">
+                        {{ tag ? tag : '暂无' }}
+                    </a-tag>
+                </span>
+            </div>
+            <span class="brief" :key="6003">{{ articleDetail.brief ? articleDetail.brief : '暂无简介~' }}</span>
+            <a-divider class="divider" :key="6004"/>
+            <div class="personalInformation" :key="6005">
+                <p class="titleMobile">{{ articleDetail.title }}</p>
+                <a-avatar slot="avatar" :size="40" src="https://tomsawyer2.xyz/pics/venti.jpg" />
+                <span class="username">TomSawyer2</span>
+            </div>
+            <a-divider class="divider" :key="6006"/>
+        </transition-group>
     </div>
 </template>
 
@@ -31,15 +29,13 @@ export default {
         return {
             height: 100,
             detail: {}
-        }
+        };
     },
-    methods: {
-        
-    },
+    methods: {},
     mounted() {
         this.height = document.body.clientHeight;
     }
-}
+};
 </script>
 
 <style scoped>
@@ -56,8 +52,8 @@ export default {
     display: none;
 }
 .tags {
-	margin-bottom: 15px;
-	font-size: 15px; 
+    margin-bottom: 15px;
+    font-size: 15px;
 }
 .brief {
     margin-top: 20px;
@@ -79,7 +75,7 @@ export default {
     justify-content: center;
     flex-wrap: wrap;
 }
-@media screen and (max-width : 1050px) {
+@media screen and (max-width: 1050px) {
     .tags {
         display: none;
     }
@@ -98,5 +94,15 @@ export default {
     .divider {
         display: none;
     }
+}
+.trans {
+    position: relative;
+    overflow: hidden;
+}
+.slide-fade-leave-to {
+    opacity: 0;
+}
+.slide-fade-enter-from {
+    opacity: 0;
 }
 </style>

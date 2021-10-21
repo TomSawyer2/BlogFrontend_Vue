@@ -17,11 +17,9 @@
 
 #nav {
     padding: 30px;
-
     a {
         font-weight: bold;
         color: #2c3e50;
-
         &.router-link-exact-active {
             color: #42b983;
         }
@@ -33,9 +31,7 @@
 .slide-fade-leave-active {
     transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-    // transform: translateX(0px);
+.slide-fade-enter, .slide-fade-leave-to{
     opacity: 0;
 }
 </style>

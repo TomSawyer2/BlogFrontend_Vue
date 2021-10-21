@@ -2,48 +2,59 @@
     <div v-if="show">
         <div v-if="haveTag">
             <NavigationBar :current="currentTab" />
-            <a-row type="flex" justify="center" class="PCArticle">
-                <a-col :span="18">
-                    <div style="margin-top: 100px; margin-left: 100px; margin-bottom: 50px; display: flex">
-                        <div class="circle" :style="{ backgroundColor: tag.color }" />
-                        <div class="tagInformation" style="display: flex; align-items: center; justify-items: center">
-                            <p class="tagName">{{ tag.name }}</p>
+            <div class="trans">
+                <transition-group name="slide-fade">
+                    <a-row type="flex" justify="center" class="article__PC" :key="2001">
+                        <a-col :span="18">
+                            <div class="article__PC--header">
+                                <div class="circle" :style="{ backgroundColor: tag.color }" />
+                                <div class="article__PC--tag">
+                                    <p class="article__PC--tag__name">{{ tag.name }}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <Article
+                                    style="display: flex; justify-content: center"
+                                    :articles="articles"
+                                    :loading="loading"
+                                    :reverse="reverseFather" />
+                            </div>
+                        </a-col>
+                    </a-row>
+                </transition-group>
+                <a-row type="flex" justify="center" class="article__Mobile">
+                    <a-col :span="24">
+                        <div class="article__Mobile--header">
+                            <div class="circle" :style="{ backgroundColor: tag.color }" />
+                            <div class="article__Mobile--tag">
+                                <p class="article__Mobile--tag__name">{{ tag.name }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <Article
-                            style="display: flex; justify-content: center"
-                            :articles="articles"
+                        <MobileArticle
+                            style="display: flex; justify-content: center; margin-top: 30px"
                             :loading="loading"
-                            :reverse="reverseFather" />
-                    </div>
-                </a-col>
-            </a-row>
-            <a-row type="flex" justify="center" class="MobileArticle">
-                <a-col :span="24">
-                    <div style="margin-top: 100px; margin-left: 50px; display: flex">
-                        <div class="circle" :style="{ backgroundColor: tag.color }" />
-                        <div class="tagInformation" style="display: flex; align-items: center; justify-items: center">
-                            <p class="tagName">{{ tag.name }}</p>
-                        </div>
-                    </div>
-                    <MobileArticle
-                        style="display: flex; justify-content: center; margin-top: 30px"
-                        :loading="loading"
-                        :articles="articles" />
-                </a-col>
-            </a-row>
-            <a-back-top class="toTopBtn">
-                <a-button shape="circle" icon="vertical-align-top" size="large" />
-            </a-back-top>
-            <a-button
-                v-if="addBtnShow"
-                shape="circle"
-                icon="sync"
-                size="large"
-                class="reverseBtn"
-                @click="reverseTime" />
-            <a-button v-if="addBtnShow" shape="circle" icon="appstore" size="large" class="toAllBtn" @click="toAll" />
+                            :articles="articles" />
+                    </a-col>
+                </a-row>
+                <a-back-top class="toTopBtn">
+                    <a-button shape="circle" icon="vertical-align-top" size="large" />
+                </a-back-top>
+                <a-button
+                    v-if="addBtnShow"
+                    shape="circle"
+                    icon="sync"
+                    size="large"
+                    class="reverseBtn"
+                    @click="reverseTime" />
+                <a-button
+                    v-if="addBtnShow"
+                    shape="circle"
+                    icon="appstore"
+                    size="large"
+                    class="toAllBtn"
+                    @click="toAll"
+                    :key="2005" />
+            </div>
         </div>
         <div v-else>
             <NavigationBar :current="currentTab" />
@@ -135,70 +146,95 @@ export default {
 </script>
 
 <style scoped>
-.slide-fade-enter-active {
-    transition: all 0.8s ease;
-}
-.slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-    transform: translateY(-17px);
-    opacity: 0;
-}
 .addArticleBtn {
     position: fixed;
     z-index: 1000;
     right: 40px;
     bottom: 40px;
 }
+
 .reverseBtn {
     position: fixed;
     right: 40px;
     z-index: 1000;
     bottom: 100px;
 }
+
 .toTopBtn {
     position: fixed;
     right: 40px;
     bottom: 160px;
     z-index: 1000;
 }
+
 .circle {
     border-radius: 50%;
     width: 100px;
     height: 100px;
     /* 宽度和高度需要相等 */
 }
-.tagInformation {
-    margin-left: 50px;
-}
-.tagName {
-    font-size: 30px;
-    margin-bottom: 0px;
-}
+
 .bottomBar {
     position: fixed;
     bottom: 0px;
     display: none;
 }
+
 .toAllBtn {
     position: fixed;
     right: 40px;
     bottom: 40px;
     z-index: 1000;
 }
-.MobileArticle {
+
+.article__Mobile {
     display: none;
 }
+
+.article__Mobile--header {
+    margin-top: 100px; 
+    margin-left: 50px; 
+    display: flex;
+}
+
+.article__Mobile--tag {
+    display: flex; 
+    align-items: center; 
+    justify-items: center;
+}
+
+.article__Mobile--tag__name {
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
+.article__PC--header {
+    margin-top: 100px; 
+    margin-left: 100px; 
+    margin-bottom: 50px; 
+    display: flex;
+}
+
+.article__PC--tag {
+    margin-left: 50px;
+    display: flex; 
+    align-items: center; 
+    justify-items: center;
+}
+
+.article__PC--tag__name {
+    font-size: 30px;
+    margin-bottom: 0px;
+}
+
 @media screen and (max-width: 800px) {
     .bottomBar {
         display: block;
     }
-    .PCArticle {
+    .article__PC {
         display: none;
     }
-    .MobileArticle {
+    .article__Mobile {
         display: block;
     }
     .reverseBtn {
@@ -218,5 +254,16 @@ export default {
         bottom: 80px;
         right: 20px;
     }
+}
+.trans {
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+}
+.slide-fade-leave-to {
+    opacity: 0;
+}
+.slide-fade-enter-from {
+    opacity: 0;
 }
 </style>

@@ -4,7 +4,11 @@
             <a-skeleton active :loading="loading" avatar>
                 <a-card hoverable class="articles" v-for="(item, index) in items" :key="index">
                     <a-card-meta @click="toDetail(item)">
-                        <a-avatar slot="avatar" class="articles-avatar" :size="40" src="https://tomsawyer2.xyz/pics/venti.jpg" />
+                        <a-avatar
+                            slot="avatar"
+                            class="articles-avatar"
+                            :size="40"
+                            src="https://tomsawyer2.xyz/pics/venti.jpg" />
                         <a slot="title" class="articles-title">{{ item.title }}</a>
                         <a slot="description" class="articles-description">{{
                             item.brief ? item.brief : '暂无简介~'
@@ -113,7 +117,6 @@ export default {
     margin-left: 20px;
 }
 .articles-avatar {
-
 }
 .articles-tags {
     margin-top: 15px;
@@ -151,5 +154,4 @@ export default {
         margin-bottom: 0px;
     }
 }
-
 </style>

@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import {
     Affix,
     Avatar,
@@ -21,27 +21,27 @@ import {
     Spin,
     Tag,
     Timeline
-} from 'ant-design-vue'
+} from 'ant-design-vue';
 
-Vue.use(Avatar)
-Vue.use(Button)
-Vue.use(Col)
-Vue.use(Row)
-Vue.use(Tag)
-Vue.use(Icon)
-Vue.use(Popover)
-Vue.use(Divider)
-Vue.use(Timeline)
-Vue.use(Card)
-Vue.use(Affix)
-Vue.use(Skeleton)
-Vue.use(BackTop)
-Vue.use(Layout)
-Vue.use(Menu)
-Vue.use(Spin)
-Vue.use(Checkbox)
-Vue.use(Input)
-Vue.use(Form)
-Vue.use(Modal)
+Vue.use(Avatar);
+Vue.use(Button);
+Vue.use(Col);
+Vue.use(Row);
+Vue.use(Tag);
+Vue.use(Icon);
+Vue.use(Popover);
+Vue.use(Divider);
+Vue.use(Timeline);
+Vue.use(Card);
+Vue.use(Affix);
+Vue.use(Skeleton);
+Vue.use(BackTop);
+Vue.use(Layout);
+Vue.use(Menu);
+Vue.use(Spin);
+Vue.use(Checkbox);
+Vue.use(Input);
+Vue.use(Form);
+Vue.use(Modal);
 
-Vue.prototype.$message = message
+Vue.prototype.$message = message;

@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import VMdEditor from '@kangc/v-md-editor';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
@@ -19,7 +19,6 @@ hljs.registerLanguage('python', python);
 hljs.registerLanguage('css', css);
 hljs.registerLanguage('json', json);
 
-
 import VueMarkdownEditor from '@kangc/v-md-editor';
 import createTipPlugin from '@kangc/v-md-editor/lib/plugins/tip/index';
 import '@kangc/v-md-editor/lib/plugins/tip/tip.css';
@@ -27,7 +26,7 @@ import '@kangc/v-md-editor/lib/plugins/tip/tip.css';
 VueMarkdownEditor.use(createTipPlugin());
 
 VMdEditor.use(githubTheme, {
-  Hljs: hljs
+    Hljs: hljs
 });
 
 Vue.use(VMdEditor);

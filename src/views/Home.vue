@@ -57,7 +57,7 @@ export default {
     -webkit-background-size: cover;
     -o-background-size: cover;
     background-position: center 0;
-    background-image: url(https://upload-bbs.mihoyo.com/upload/2021/09/22/175654507/0a2179f740e6a3a8b5f6ad1444b3bbc9_5064976308949348708.png?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg);
+    background-image: url(https://upload-bbs.mihoyo.com/upload/2021/10/05/76237708/3727c82a746aad16a14ef6f2f91a36e7_4185820189046643363.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow: hidden;
@@ -77,10 +77,10 @@ export default {
     width: 100%;
     height: 100%;
     background: inherit;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -ms-filter: blur(5px);
-    -o-filter: blur(5px);
-    filter: blur(5px);
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -ms-filter: blur(3px);
+    -o-filter: blur(3px);
+    filter: blur(3px);
 }
 </style>
