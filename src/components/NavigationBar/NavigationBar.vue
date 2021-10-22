@@ -1,5 +1,5 @@
 <template>
-    <div style="position: fixed; width: 100%; z-index: 1000; border-bottom: 1px solid #e8e8e8">
+    <div style="position: fixed; width: 100%; z-index: 1000; border-bottom: 1px solid #e8e8e8; top: 0px">
         <a-layout class="components-layout-demo-top-side layout">
             <a-layout-header class="header" style="background: #ffffff">
                 <a-row>
@@ -49,7 +49,7 @@ export default {
             } else if (newV[0] == '2') {
                 this.$router.push('/categories').catch(() => {});
             } else if (newV[0] == '3') {
-                this.$router.push('/index').catch(() => {});
+                this.$router.push('/personalSpace').catch(() => {});
             }
         }
     }

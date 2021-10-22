@@ -44,7 +44,7 @@ export default {
             } else if (newV[0] == '2') {
                 this.$router.push('/categories').catch(() => {});
             } else if (newV[0] == '3') {
-                this.$router.push('/index').catch(() => {});
+                this.$router.push('/personalSpace').catch(() => {});
             }
         }
     }
