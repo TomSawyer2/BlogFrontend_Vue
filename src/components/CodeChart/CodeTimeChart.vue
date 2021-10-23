@@ -38,6 +38,7 @@ export default {
             option = {
                 color: ['#80FFA5'],
                 title: {
+                    left: 'center',
                     text: '项目工作时间（小时）'
                 },
                 tooltip: {
@@ -47,14 +48,6 @@ export default {
                         label: {
                             backgroundColor: '#6a7985'
                         }
-                    }
-                },
-                legend: {
-                    data: ['时间']
-                },
-                toolbox: {
-                    feature: {
-                        saveAsImage: {}
                     }
                 },
                 grid: {

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="show">
         <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back" />
         <a-form
             :label-col="labelCol"
@@ -85,7 +85,8 @@ export default {
             visibleGetTemp: false,
             updateLoading: false,
             tempArticle: {},
-            isEditingTemp: 0
+            isEditingTemp: 0,
+            show: false
         };
     },
     methods: {
@@ -193,6 +194,9 @@ export default {
         }
     },
     async mounted() {
+        setTimeout(() => {
+            this.show = true;
+        }, 1000);
         this.height = document.body.clientHeight;
         await this.getAllTagsFunc();
         await this.getTempArticle();

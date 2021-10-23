@@ -1,34 +1,47 @@
 <template>
-    <div class="ps">
-        <NavigationBar :current="currentTab" class="ps__navigationBar--PC"/>
-        <div class="ps__wrapper">
-            <div class="ps__wrapper--avatar">
-                <a-avatar :size="150" src="https://tomsawyer2.xyz/pics/venti.jpg" class="ps__wrapper--avatar__img"/>
-                <span class="ps__wrapper--avatar__title">TomSawyer2</span>
-            </div>
-            <div class="ps__wrapper--stats">
-                <CodeTimeChart />
-            </div>
+    <div v-if="show">
+        <div class="ps">
+            <transition-group name="slide-fade">
+                <NavigationBar :current="currentTab" :key="7001" class="ps__navigationBar--PC"/>
+                <div class="ps__wrapper" :key="7002">
+                    <div class="ps__wrapper--avatar">
+                        <a-avatar :size="150" src="https://tomsawyer2.xyz/pics/venti.jpg" class="ps__wrapper--avatar__img"/>
+                        <span class="ps__wrapper--avatar__title">TomSawyer2</span>
+                    </div>
+                    <div class="ps__wrapper--stats__wrapper">
+                        <CodeTimeChart class="ps__wrapper--stats"/>
+                        <CodeLangChart class="ps__wrapper--stats"/>
+                    </div>
+                </div>
+                <BottomBar :key="7003" :current="currentTab" class="ps__navigationBar--Mobile"/>
+            </transition-group>
         </div>
-        <BottomBar :current="currentTab" class="ps__navigationBar--Mobile"/>
     </div>
 </template>
 
 <script>
 import NavigationBar from '@/components/NavigationBar/NavigationBar.vue'
 import BottomBar from '@/components/NavigationBar/BottomBar.vue'
-import CodeTimeChart from '@/components/CodeTimeChart/CodeTimeChart.vue'
+import CodeTimeChart from '@/components/CodeChart/CodeTimeChart.vue'
+import CodeLangChart from '@/components/CodeChart/CodeLangChart.vue'
+
 
 export default {
     name: 'PersonalSpace',
-    components: { NavigationBar, BottomBar, CodeTimeChart },
+    components: { NavigationBar, BottomBar,  CodeLangChart ,CodeTimeChart},
     data() {
         return {
-            currentTab: ['3']
+            currentTab: ['3'],
+            show: false
         };
     },
     methods: {
         
+    },
+    mounted() {
+        setTimeout(() => {
+            this.show = true;
+        }, 1000);
     }
 };
 </script>
@@ -62,10 +75,24 @@ export default {
     margin-left: 100px;
 }
 .ps__wrapper--stats {
-    width: 50%;
-    height: 50%;
+    width: 35%;
+    height: 35%;
 }
-
+.ps__wrapper--stats__wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+@media screen and (max-width: 930px) {
+    .ps__wrapper--stats__wrapper {
+        flex-direction: column;
+    }
+    .ps__wrapper--stats {
+        margin: auto;
+        width: 95%;
+        height: 100%;
+    }
+}
 @media screen and (max-width: 800px) {
     .ps__navigationBar--PC {
         display: none;
@@ -79,5 +106,16 @@ export default {
     .ps__wrapper--avatar__title {
         margin-left: 5px;
     }
+}
+.ps {
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+}
+.slide-fade-leave-to {
+    opacity: 0;
+}
+.slide-fade-enter-from {
+    opacity: 0;
 }
 </style>

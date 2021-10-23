@@ -9,10 +9,11 @@
                 </span>
             </a-skeleton>
         </a-card>
-        <a-card title="联系博主" hoverable style="margin-top: 20px">
+        <a-card title="联系博主" hoverable style="margin-top: 15px">
             <p style="margin-bottom: 5px">QQ: 6272867</p>
             <p style="margin-bottom: 5px">Github: <a href="https://github.com/TomSawyer2">TomSawyer2</a></p>
-            <p style="margin-bottom: 0px">Gitee: <a href="https://gitee.com/hanserena">hanserena</a></p>
+            <p style="margin-bottom: 5px">Gitee: <a href="https://gitee.com/hanserena">hanserena</a></p>
+            <p style="margin-bottom: 0px">备案号：<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2021032523</a></p>
         </a-card>
     </div>
 </template>
@@ -45,7 +46,7 @@ export default {
 
 <style scoped>
 .tags {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 15px;
 }
 </style>

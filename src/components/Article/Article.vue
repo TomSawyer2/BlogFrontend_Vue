@@ -31,13 +31,10 @@
                                 <a-col :offset="1">
                                     <a-icon key="like" type="like" style="fontsize: 18px" />
                                 </a-col>
-                                <a-col :offset="1">
-                                    <a-icon key="message" type="message" style="fontsize: 18px" />
-                                </a-col>
-                                <a-col :offset="1">
+                                <a-col :offset="1" v-if="isLogin">
                                     <a-icon key="edit" type="edit" style="fontsize: 18px" @click="toEdit(item)" />
                                 </a-col>
-                                <a-col :offset="1">
+                                <a-col :offset="1" v-if="isLogin">
                                     <a-popover trigger="click">
                                         <template slot="content">
                                             <a slot="content" @click="deleteArticleFunc(item)">删除</a>
@@ -56,6 +53,7 @@
 
 <script>
 import { getAllArticle, deleteArticle } from '@/apis';
+import { getToken } from '@/utils/storage.js'
 export default {
     name: 'Article',
     props: ['reverse', 'articles', 'loading'],
@@ -63,7 +61,8 @@ export default {
         return {
             items: [],
             deleteDialog: false,
-            deleteItem: {}
+            deleteItem: {},
+            isLogin: getToken() ? true : false
         };
     },
     methods: {

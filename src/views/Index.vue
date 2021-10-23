@@ -39,6 +39,7 @@
                     icon="plus"
                     size="large"
                     class="addArticleBtn"
+                    v-if="isLogin"
                     @click="addArticle" />
             </transition-group>
         </div>
@@ -53,6 +54,7 @@ import BottomBar from '@/components/NavigationBar/BottomBar.vue'
 import Article from '@/components/Article/Article.vue'
 import MobileArticle from '@/components/Article/MobileArticle.vue'
 import SideBar from '@/components/SideBar/SideBar.vue'
+import { getToken } from '@/utils/storage.js'
 export default {
     name: 'Index',
     components: { NavigationBar, Article, SideBar, MobileArticle, BottomBar },
@@ -62,7 +64,8 @@ export default {
             reverseFather: false,
             currentTab: ['1'],
             articles: [],
-            loading: true
+            loading: true,
+            isLogin: getToken() ? true : false
         };
     },
     async mounted() {
@@ -97,7 +100,7 @@ export default {
     position: fixed;
     z-index: 1000;
     right: 40px;
-    bottom: 40px;
+    bottom: 160px;
 }
 .reverseBtn {
     position: fixed;
@@ -108,7 +111,7 @@ export default {
 .toTopBtn {
     position: fixed;
     right: 40px;
-    bottom: 160px;
+    bottom: 40px;
     z-index: 1000;
 }
 .sideBar {

@@ -5,7 +5,14 @@
                 <a-row>
                     <a-col :span="8">
                         <div>
-                            <p style="font-size: 20px">TomSawyer2</p>
+                            <p style="font-size: 20px" @click="openLoginForm()">TomSawyer2</p>
+                            <a-modal v-model="loginVisible" title="管理员登录" @ok="loginFunc()">
+                                <a-input placeholder="账号" allow-clear v-model="loginParams.userName" />
+                                <a-input-password v-model="loginParams.password" placeholder="密码" style="margin-top: 20px"/>
+                            </a-modal>
+                            <a-modal v-model="logoutVisible" title="注销" @ok="logoutFunc()">
+                                <p>确定注销吗？</p>
+                            </a-modal>
                         </div>
                     </a-col>
                     <a-col :span="16" class="extraItems">
@@ -31,17 +38,54 @@
 </template>
 
 <script>
+import { login } from '@/apis'
+import { setToken, getToken, removeToken } from '@/utils/storage.js'
 export default {
     name: 'NavigationBar',
     props: ['current'],
     data() {
         return {
-            currentLocal: ['1']
+            currentLocal: ['1'],
+            loginVisible: false,
+            logoutVisible: false,
+            loginParams: {
+                userName: '',
+                password: ''
+            },
+            isLogin: getToken() ? true : false
         };
     },
     mounted() {
         this.currentLocal = this.current;
     },
+    methods: {
+        openLoginForm() {
+            if(this.isLogin == true) {
+                this.logoutVisible = true;
+            } else {
+                this.loginVisible = true;
+            }
+        },
+        async loginFunc() {
+            try {
+                let token = (await login(this.loginParams)).data.token;
+                setToken(token);
+                this.loginParams = {};
+                this.$message.success("登录成功");
+                this.loginVisible = false;
+                this.$router.go(0);
+                this.isLogin = true;
+            } catch(err) {
+                console.log(err);
+            }
+        },
+        logoutFunc() {
+            removeToken();
+            this.$router.go(0);
+            this.logoutVisible = false;
+            this.isLogin = false;
+        }
+    },  
     watch: {
         currentLocal(newV) {
             if (newV[0] == '1') {

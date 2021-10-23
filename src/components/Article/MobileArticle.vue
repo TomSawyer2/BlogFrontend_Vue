@@ -29,9 +29,6 @@
                             <a-icon key="like" type="like" style="fontsize: 18px" />
                         </a-col>
                         <a-col :offset="1">
-                            <a-icon key="message" type="message" style="fontsize: 18px" />
-                        </a-col>
-                        <a-col :offset="1">
                             <a-icon key="edit" type="edit" style="fontsize: 18px" @click="toEdit(item)" />
                         </a-col>
                         <a-col :offset="1">

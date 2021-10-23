@@ -1,58 +1,71 @@
 <template>
-    <div class="trans">
-        <transition-group name="slide-fade">
-            <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back" :key="5001" />
-            <a-row
-                type="flex"
-                justify="center"
-                class="detailScoped"
-                :style="{ height: height + 'px', alignContent: 'center' }"
-                :key="5002">
-                <a-col :span="14">
-                    <a-card class="mainCard trans" :style="{ maxHeight: height - 50 + 'px' }">
-                        <transition name="slide-fade">
-                            <v-md-editor
-                                class="magicHidden"
-                                :style="{ maxHeight: height - 90 + 'px', overflowY: 'hidden', height: height - 90 + 'px' }"
-                                v-model="formData.content"
-                                left-toolbar=""
-                                right-toolbar="toc" />
-                        </transition>
-                    </a-card>
-                </a-col>
-                <a-col :span="5" class="sideCard">
-                    <a-card class="mainCard" :style="{ maxHeight: height - 50 + 'px', marginLeft: 20 + 'px' }">
-                        <SideCard
-                            :articleDetail="formData"
+    <div v-if="show">
+        <div class="trans">
+            <transition-group name="slide-fade">
+                <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back" :key="5001" />
+                <a-row
+                    type="flex"
+                    justify="center"
+                    class="detailScoped"
+                    :style="{ height: height + 'px', alignContent: 'center' }"
+                    :key="5002">
+                    <a-col :span="14">
+                        <a-card class="mainCard trans" :style="{ maxHeight: height - 50 + 'px' }">
+                            <transition name="slide-fade">
+                                <v-md-editor
+                                    class="magicHidden"
+                                    :style="{
+                                        maxHeight: height - 90 + 'px',
+                                        overflowY: 'hidden',
+                                        height: height - 90 + 'px'
+                                    }"
+                                    v-model="formData.content"
+                                    left-toolbar=""
+                                    right-toolbar="toc" />
+                            </transition>
+                        </a-card>
+                    </a-col>
+                    <a-col :span="5" class="sideCard">
+                        <a-card class="mainCard" :style="{ maxHeight: height - 50 + 'px', marginLeft: 20 + 'px' }">
+                            <SideCard
+                                :articleDetail="formData"
+                                :style="{
+                                    maxHeight: height - 90 + 'px',
+                                    overflowY: 'hidden',
+                                    height: height - 90 + 'px'
+                                }" />
+                        </a-card>
+                    </a-col>
+                </a-row>
+                <a-row
+                    type="flex"
+                    justify="center"
+                    class="detailScopedMobile"
+                    :style="{ height: height + 'px', alignContent: 'center', flexDirection: 'column' }"
+                    :key="5003">
+                    <a-col :span="24">
+                        <v-md-editor
+                            class="magicHidden"
+                            :style="{ maxHeight: height - 20 + 'px', overflowY: 'hidden', height: height - 100 + 'px' }"
+                            v-model="formData.content"
+                            left-toolbar=""
+                            right-toolbar="toc"></v-md-editor>
+                    </a-col>
+                    <a-col :span="24">
+                        <a-card
+                            class="mainCard"
                             :style="{
-                                maxHeight: height - 90 + 'px',
-                                overflowY: 'hidden',
-                                height: height - 90 + 'px'
-                            }" />
-                    </a-card>
-                </a-col>
-            </a-row>
-            <a-row
-                type="flex"
-                justify="center"
-                class="detailScopedMobile"
-                :style="{ height: height + 'px', alignContent: 'center', flexDirection: 'column' }"
-                :key="5003">
-                <a-col :span="24">
-                    <v-md-editor
-                        class="magicHidden"
-                        :style="{ maxHeight: height - 20 + 'px', overflowY: 'hidden', height: height - 100 + 'px' }"
-                        v-model="formData.content"
-                        left-toolbar=""
-                        right-toolbar="toc"></v-md-editor>
-                </a-col>
-                <a-col :span="24">
-                    <a-card class="mainCard" :style="{ position: 'fixed', maxHeight: height - 50 + 'px', bottom: 5 + 'px', width: '95%' }">
-                        <SideCard :articleDetail="formData" />
-                    </a-card>
-                </a-col>
-            </a-row>
-        </transition-group>
+                                position: 'fixed',
+                                maxHeight: height - 50 + 'px',
+                                bottom: 5 + 'px',
+                                width: '95%'
+                            }">
+                            <SideCard :articleDetail="formData" />
+                        </a-card>
+                    </a-col>
+                </a-row>
+            </transition-group>
+        </div>
     </div>
 </template>
 
@@ -73,7 +86,8 @@ export default {
                 tagsForShow: []
             },
             height: 100,
-            id: -1
+            id: -1,
+            show: false
         };
     },
     methods: {
@@ -83,6 +97,9 @@ export default {
         }
     },
     async mounted() {
+        setTimeout(() => {
+            this.show = true;
+        }, 1000);
         this.id = this.$route.params.id ? this.$route.params.id : getDetailId();
         if (this.id == -1) {
             this.$router.push('/index');
