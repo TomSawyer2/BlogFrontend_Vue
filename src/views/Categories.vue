@@ -198,6 +198,7 @@ export default {
 }
 
 .article__Mobile--tag {
+    margin-left: 50px;
     display: flex; 
     align-items: center; 
     justify-items: center;

@@ -12,7 +12,7 @@
             <span class="brief" :key="6003">{{ articleDetail.brief ? articleDetail.brief : '暂无简介~' }}</span>
             <a-divider class="divider" :key="6004"/>
             <div class="personalInformation" :key="6005">
-                <p class="titleMobile">{{ articleDetail.title }}</p>
+                <p class="titleMobile">{{ title }}</p>
                 <a-avatar slot="avatar" :size="40" src="https://tomsawyer2.xyz/pics/venti.jpg" />
                 <span class="username">TomSawyer2</span>
             </div>
@@ -34,6 +34,15 @@ export default {
     methods: {},
     mounted() {
         this.height = document.body.clientHeight;
+    },
+    computed: {
+        title: function() {
+            if(this.articleDetail.title.length > 6) {
+                return this.articleDetail.title.substr(0, 5) + '...';
+            } else {
+                return this.articleDetail.title;
+            }
+        }
     }
 };
 </script>

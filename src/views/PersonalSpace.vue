@@ -25,7 +25,6 @@ import BottomBar from '@/components/NavigationBar/BottomBar.vue'
 import CodeTimeChart from '@/components/CodeChart/CodeTimeChart.vue'
 import CodeLangChart from '@/components/CodeChart/CodeLangChart.vue'
 
-
 export default {
     name: 'PersonalSpace',
     components: { NavigationBar, BottomBar,  CodeLangChart ,CodeTimeChart},
@@ -91,6 +90,9 @@ export default {
         margin: auto;
         width: 95%;
         height: 100%;
+    }
+    .ps__wrapper--avatar__title {
+        font-size: 30px;
     }
 }
 @media screen and (max-width: 800px) {
