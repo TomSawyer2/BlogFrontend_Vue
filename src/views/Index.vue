@@ -27,6 +27,7 @@
                     :articles="articles" />
             </a-col>
         </a-row>
+        <Footer />
         <a-back-top class="toTopBtn">
             <a-button shape="circle" icon="vertical-align-top" size="large" />
         </a-back-top>
@@ -54,10 +55,11 @@ import BottomBar from '@/components/NavigationBar/BottomBar.vue'
 import Article from '@/components/Article/Article.vue'
 import MobileArticle from '@/components/Article/MobileArticle.vue'
 import SideBar from '@/components/SideBar/SideBar.vue'
+import Footer from '@/components/Footer/Footer.vue'
 import { getToken } from '@/utils/storage.js'
 export default {
     name: 'Index',
-    components: { NavigationBar, Article, SideBar, MobileArticle, BottomBar },
+    components: { NavigationBar, Article, SideBar, MobileArticle, BottomBar, Footer },
     data() {
         return {
             show: false,
@@ -114,8 +116,6 @@ export default {
     bottom: 40px;
     z-index: 1000;
 }
-.sideBar {
-}
 @media screen and (max-width: 1000px) {
     .sideBar {
         display: none;
@@ -123,8 +123,6 @@ export default {
     .article__wrapper--PC {
         width: 100%;
     }
-}
-.article__wrapper--PC {
 }
 .article__wrapper--Mobile {
     display: none;
