@@ -13,6 +13,7 @@
  * 7. 上传草稿
  * 8. 删除草稿
  * 9. 查询草稿
+ * 10. 点赞
  */
 import { URL } from '@/config';
 import axios from '../request';
@@ -104,4 +105,13 @@ export function getArticleByTag(params) {
  */ 
  export function searchTempArticle() {
     return axios.post(URL.searchTempArticle);
+}
+
+/**
+ * @description 查询草稿
+ * @method POST
+ * @param {Number} id
+ */ 
+ export function like(params) {
+    return axios.post(URL.like, params);
 }

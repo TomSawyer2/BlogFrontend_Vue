@@ -38,6 +38,11 @@ const routes = [
         path: '/personalSpace',
         name: 'PersonalSpace',
         component: () => import('../views/PersonalSpace.vue')
+    },
+    {
+        path: '/messageBoard',
+        name: 'MessageBoard',
+        component: () => import('../views/MessageBoard.vue')
     }
 ];
 

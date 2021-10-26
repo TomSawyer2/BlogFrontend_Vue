@@ -8,6 +8,7 @@ import {
     Checkbox,
     Col,
     Divider,
+    Empty,
     Form,
     Icon,
     Input,
@@ -15,6 +16,7 @@ import {
     Menu,
     message,
     Modal,
+    notification,
     Popover,
     Row,
     Skeleton,
@@ -43,5 +45,7 @@ Vue.use(Checkbox);
 Vue.use(Input);
 Vue.use(Form);
 Vue.use(Modal);
+Vue.use(Empty);
 
 Vue.prototype.$message = message;
+Vue.prototype.$notification = notification;

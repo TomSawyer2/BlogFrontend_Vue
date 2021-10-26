@@ -24,7 +24,8 @@ const URL = {
     getArticleByTag: '/getArticleByTag',
     updateTempArticle: '/updateTempArticle',
     deleteTempArticle: '/deleteTempArticle',
-    searchTempArticle: '/searchTempArticle'
+    searchTempArticle: '/searchTempArticle',
+    like: '/like'
 };
 
 const ERROR_CODE = {
@@ -43,7 +44,8 @@ const ERROR_CODE = {
     QUERY_ARTICLE_ERR: 13, // 查询文章不存在
     QUERY_ARTICLE_BY_TAG_ERR: 14, // 用tag查询文章失败
     TEMP_ARTICLE_ADD_ERR: 15, // 添加草稿失败
-    TEMP_ARTICLE_DEL_ERR: 16 // 删除草稿失败
+    TEMP_ARTICLE_DEL_ERR: 16, // 删除草稿失败
+    LIKE_ERR: 17 // 点赞失败
 };
 
 export { URL, ERROR_CODE };

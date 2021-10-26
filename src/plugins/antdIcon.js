@@ -5,6 +5,8 @@ export { default as LeftOutline } from '@ant-design/icons/lib/outline/LeftOutlin
 
 export { default as LikeOutline } from '@ant-design/icons/lib/outline/LikeOutline';
 
+export { default as LikeTwoTone } from '@ant-design/icons/lib/twotone/LikeTwoTone';
+
 // export what antd other components need
 export { default as MessageOutline } from '@ant-design/icons/lib/outline/MessageOutline';
 
@@ -21,3 +23,5 @@ export { default as SyncOutline } from '@ant-design/icons/lib/outline/SyncOutlin
 export { default as AppstoreOutline } from '@ant-design/icons/lib/outline/AppstoreOutline';
 
 export { default as PlusOutline } from '@ant-design/icons/lib/outline/PlusOutline';
+
+export { default as SmileOutline } from '@ant-design/icons/lib/outline/SmileOutline';

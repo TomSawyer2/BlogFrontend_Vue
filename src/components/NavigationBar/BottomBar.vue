@@ -14,9 +14,10 @@
                                 display: 'flex',
                                 justifyContent: 'center'
                             }">
-                            <a-menu-item key="1" :span="8"> 首页 </a-menu-item>
-                            <a-menu-item key="2" :span="8"> 分类 </a-menu-item>
-                            <a-menu-item key="3" :span="8"> 个人中心 </a-menu-item>
+                            <a-menu-item key="1" :span="4"> 首页 </a-menu-item>
+                            <a-menu-item key="2" :span="4"> 分类 </a-menu-item>
+                            <a-menu-item key="3" :span="4"> 留言箱 </a-menu-item>
+                            <a-menu-item key="4" :span="4"> 个人中心 </a-menu-item>
                         </a-menu>
                     </a-col>
                 </a-row>
@@ -44,6 +45,8 @@ export default {
             } else if (newV[0] == '2') {
                 this.$router.push('/categories').catch(() => {});
             } else if (newV[0] == '3') {
+                this.$router.push('/messageBoard').catch(() => {});
+            } else if (newV[0] == '4') {
                 this.$router.push('/personalSpace').catch(() => {});
             }
         }
@@ -54,6 +57,9 @@ export default {
 <style scoped>
 .mainBar {
     display: none;
+}
+.ant-layout-header {
+    padding: 0 0;
 }
 @media screen and (max-width: 800px) {
     .mainBar {

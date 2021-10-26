@@ -12,7 +12,8 @@ export default {
         return {
             xData: [],
             seriesData: [],
-            data: {}
+            data: {},
+            newSeriesData: []
         };
     },
     methods: {
@@ -35,10 +36,11 @@ export default {
             var myChart = this.$echarts.init(chartDom);
             var option;
             let idx = 0;
-            for(idx; idx < this.data.length; idx ++) {
+            for (idx; idx < this.data.length; idx++) {
                 this.xData[idx] = this.data[idx].name;
-                this.seriesData.push({value: this.data[idx].percent, name: this.data[idx].name});
+                this.seriesData.push({ value: this.data[idx].percent, name: this.data[idx].name });
             }
+            this.newSeriesData = this.seriesData.reverse();
             option = {
                 title: {
                     text: '编程语言',
@@ -57,7 +59,7 @@ export default {
                         top: 'center',
                         center: ['50%', '50%'],
                         selectedMode: 'single',
-                        data: this.seriesData,
+                        data: this.newSeriesData,
                         emphasis: {
                             itemStyle: {
                                 shadowBlur: 10,

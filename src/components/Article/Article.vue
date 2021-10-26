@@ -3,7 +3,7 @@
         <div class="mainCard">
             <a-skeleton active :loading="loading" avatar>
                 <a-timeline pending="没有更多内容了~~" :reverse="reverse" class="finalDot">
-                    <a-timeline-item v-for="(item, index) in items" :key="index">
+                    <a-timeline-item v-for="(item) in items" :key="item.id">
                         <p class="time" style="margin-left: 20px">{{ item.update_time ? item.update_time : '' }}</p>
                         <a-card hoverable class="articles" style="margin-left: 20px">
                             <a-card-meta @click="toDetail(item)">
@@ -29,7 +29,9 @@
                             <a-divider class="divider" />
                             <a-row type="flex" justify="end" style="margin-top: 10px">
                                 <a-col :offset="1">
-                                    <a-icon key="like" type="like" style="fontsize: 18px" />
+                                    <a-icon v-if="item.haveLike == '1'" key="like" type="like" theme="twoTone" style="fontsize: 18px" @click="toLike(item)" />
+                                    <a-icon v-else key="like" type="like" style="fontsize: 18px" @click="toLike(item)" />
+                                    <span>{{ item.likes }}</span>
                                 </a-col>
                                 <a-col :offset="1" v-if="isLogin">
                                     <a-icon key="edit" type="edit" style="fontsize: 18px" @click="toEdit(item)" />
@@ -52,7 +54,7 @@
 </template>
 
 <script>
-import { getAllArticle, deleteArticle } from '@/apis';
+import { getAllArticle, deleteArticle, like } from '@/apis';
 import { getToken } from '@/utils/storage.js'
 export default {
     name: 'Article',
@@ -80,6 +82,15 @@ export default {
         },
         toDetail(item) {
             this.$router.push({ path: '/detail', name: 'Detail', params: { id: item.id } });
+        },
+        async toLike(item) {
+            try {
+                await like({id: item.id});
+                item.haveLike = '1';
+                item.likes ++;
+            } catch(err) {
+                console.log(err);
+            }
         }
     },
     mounted() {

@@ -30,7 +30,7 @@ export default {
     components: { NavigationBar, BottomBar,  CodeLangChart ,CodeTimeChart},
     data() {
         return {
-            currentTab: ['3'],
+            currentTab: ['4'],
             show: false
         };
     },

@@ -26,7 +26,9 @@
                     <a-divider class="divider" />
                     <a-row type="flex" justify="end" style="margin-top: 10px">
                         <a-col :offset="1">
-                            <a-icon key="like" type="like" style="fontsize: 18px" />
+                            <a-icon v-if="item.haveLike == '1'" key="like" type="like" theme="twoTone" style="fontsize: 18px" @click="toLike(item)" />
+                            <a-icon v-else key="like" type="like" style="fontsize: 18px" @click="toLike(item)" />
+                            <span>{{ item.likes }}</span>
                         </a-col>
                         <a-col :offset="1" v-if="isLogin">
                             <a-icon key="edit" type="edit" style="fontsize: 18px" @click="toEdit(item)" />
@@ -47,7 +49,7 @@
 </template>
 
 <script>
-import { getAllArticle, deleteArticle } from '@/apis'
+import { getAllArticle, deleteArticle, like } from '@/apis'
 import { getToken } from '@/utils/storage.js'
 
 export default {
@@ -77,6 +79,15 @@ export default {
         },
         toDetail(item) {
             this.$router.push({ path: '/detail', name: 'Detail', params: { id: item.id } });
+        },
+        async toLike(item) {
+            try {
+                await like({id: item.id});
+                item.haveLike = '1';
+                item.likes ++;
+            } catch(err) {
+                console.log(err);
+            }
         }
     },
     mounted() {

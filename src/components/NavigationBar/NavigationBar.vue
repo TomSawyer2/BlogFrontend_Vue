@@ -28,7 +28,8 @@
                             }">
                             <a-menu-item key="1"> 首页 </a-menu-item>
                             <a-menu-item key="2"> 分类 </a-menu-item>
-                            <a-menu-item key="3"> 个人中心 </a-menu-item>
+                            <a-menu-item key="3"> 留言箱 </a-menu-item>
+                            <a-menu-item key="4"> 个人中心 </a-menu-item>
                         </a-menu>
                     </a-col>
                 </a-row>
@@ -93,6 +94,8 @@ export default {
             } else if (newV[0] == '2') {
                 this.$router.push('/categories').catch(() => {});
             } else if (newV[0] == '3') {
+                this.$router.push('/messageBoard').catch(() => {});
+            } else if (newV[0] == '4') {
                 this.$router.push('/personalSpace').catch(() => {});
             }
         }
@@ -107,8 +110,6 @@ export default {
     background: rgba(255, 255, 255, 0.2);
     margin: 16px 28px 16px 0;
     float: left;
-}
-.extraItems {
 }
 @media screen and (max-width: 800px) {
     .extraItems {
