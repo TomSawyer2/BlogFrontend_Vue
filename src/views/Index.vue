@@ -42,6 +42,7 @@
                     class="addArticleBtn"
                     v-if="isLogin"
                     @click="addArticle" />
+                <a-button :key="1113" shape="circle" icon="sync" size="large" class="reverseMobileBtn" @click="reverseMobileTime" />
             </transition-group>
         </div>
         <BottomBar :current="currentTab" class="bottomBar" />
@@ -92,6 +93,9 @@ export default {
         },
         reverseTime() {
             this.reverseFather = !this.reverseFather;
+        },
+        reverseMobileTime() {
+            this.articles.reverse();
         }
     }
 };
@@ -114,6 +118,13 @@ export default {
     position: fixed;
     right: 40px;
     bottom: 40px;
+    z-index: 1000;
+}
+.reverseMobileBtn {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
     z-index: 1000;
 }
 @media screen and (max-width: 1000px) {
@@ -140,11 +151,14 @@ export default {
     .article__wrapper--Mobile {
         display: block;
     }
+    .reverseMobileBtn {
+        display: block;
+    }
     .reverseBtn {
         display: none;
     }
     .toTopBtn {
-        bottom: 80px;
+        bottom: 140px;
         right: 20px;
     }
     .addArticleBtn {

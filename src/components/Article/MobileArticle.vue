@@ -117,8 +117,6 @@ export default {
     justify-content: center;
     margin-left: 20px;
 }
-.articles-avatar {
-}
 .articles-tags {
     margin-top: 15px;
     margin-left: 85px;
