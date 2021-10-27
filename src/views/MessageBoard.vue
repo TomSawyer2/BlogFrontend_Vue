@@ -1,8 +1,8 @@
 <template>
     <div v-if="show">
         <NavigationBar :current="currentTab" />
-        <div style="padding-top: 200px">
-            <p>暂无数据</p>
+        <div class="message__wrapper">
+            <MessageCard :messagesOut="messages" @reply="replyMsg"/>
         </div>
         <BottomBar :current="currentTab" class="navigationBar--Mobile"/>
     </div>
@@ -11,18 +11,30 @@
 <script>
 import NavigationBar from '@/components/NavigationBar/NavigationBar.vue'
 import BottomBar from '@/components/NavigationBar/BottomBar.vue'
+import MessageCard from '@/components/MessageCard/MessageCard.vue'
+import { getAllMessages, replyMessage } from '@/apis'
 export default {
     name: 'MessageBoard',
-    components: { NavigationBar, BottomBar },
+    components: { NavigationBar, BottomBar, MessageCard },
     data() {
         return {
-            show: true,
-            currentTab: ['3']
+            show: false,
+            currentTab: ['3'],
+            messages: []
         };
     },
     methods: {
+        async replyMsg(item) {
+            try {
+                await replyMessage({id: item.id, reply: item.tempReply});
+                this.$message.success("回复成功");
+                this.$router.go(0);
+            } catch(err) {
+                console.log(err);
+            }
+        }
     },
-    mounted() {
+    async mounted() {
         setTimeout(() => {
             this.show = true;
             this.$notification.open({
@@ -32,12 +44,16 @@ export default {
                 duration: 3
             });
         }, 1000);
-        
+        this.messages = (await getAllMessages()).data.data;
     }
 };
 </script>
 
 <style scoped>
+.message__wrapper {
+    padding-bottom: 80px;
+    padding-top: 80px;
+}
 .navigationBar--Mobile {
     display: none;
     position: fixed;

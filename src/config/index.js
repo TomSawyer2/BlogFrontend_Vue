@@ -25,7 +25,11 @@ const URL = {
     updateTempArticle: '/updateTempArticle',
     deleteTempArticle: '/deleteTempArticle',
     searchTempArticle: '/searchTempArticle',
-    like: '/like'
+    like: '/like',
+    getAllMessages: '/getAllMessages',
+    addMessage: '/addMessage',
+    replyMessage: '/replyMessage',
+    deleteMessage: '/deleteMessage'
 };
 
 const ERROR_CODE = {
@@ -45,7 +49,11 @@ const ERROR_CODE = {
     QUERY_ARTICLE_BY_TAG_ERR: 14, // 用tag查询文章失败
     TEMP_ARTICLE_ADD_ERR: 15, // 添加草稿失败
     TEMP_ARTICLE_DEL_ERR: 16, // 删除草稿失败
-    LIKE_ERR: 17 // 点赞失败
+    LIKE_ERR: 17, // 点赞失败
+    GET_MSGS_ERR: 18, // 获取所有信息失败
+    ADD_MSG_ERR: 19, // 添加消息失败
+    REPLY_ERR: 20, // 回复消息失败
+    DEL_MSG_ERR: 21 // 删除消息失败
 };
 
 export { URL, ERROR_CODE };
