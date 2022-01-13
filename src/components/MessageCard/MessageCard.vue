@@ -4,11 +4,11 @@
             <a-card hoverable @click="openCard(item, index)">
                 <p>{{ item.content }}</p>
                 <span class="cards__card--time">{{ item.update_time }}</span>
-                <div :style="{ display: item.showReply == 1 ? 'block' : 'none' }">
+                <div :style="{ display: item.show_reply == 1 ? 'block' : 'none' }">
                     <p>{{ item.reply ? item.reply : "暂无回复" }}</p>
                     <a-textarea
                         v-if="!item.reply && isLogin"
-                        v-model="item.tempReply"
+                        v-model="item.temp_reply"
                         placeholder="输入回复"
                         @click.stop
                         :auto-size="{ minRows: 2, maxRows: 6 }"
@@ -37,13 +37,13 @@ export default {
     },
     methods: {
         openCard(item, index) {
-            if (item.showReply == 1) {
-                item.showReply = 0;
+            if (item.show_reply == 1) {
+                item.show_reply = 0;
                 this.openItem = -1;
             } else {
-                item.showReply = 1;
+                item.show_reply = 1;
                 if (this.openItem != -1) {
-                    this.messages[this.openItem].showReply = 0;
+                    this.messages[this.openItem].show_reply = 0;
                 }
                 this.openItem = index;
             }
