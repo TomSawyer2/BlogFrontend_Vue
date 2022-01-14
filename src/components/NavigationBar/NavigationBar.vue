@@ -69,7 +69,7 @@ export default {
         },
         async loginFunc() {
             try {
-                let token = (await login(this.loginParams)).data.token;
+                let token = (await login(this.loginParams)).data.data;
                 setToken(token);
                 this.loginParams = {};
                 this.$message.success("登录成功");
