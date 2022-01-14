@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'development') {
     baseURL = 'http://localhost:8082/api'
     // dev
 } else {
-    baseURL = 'https://tomsawyer2.xyz:4000/api';
+    baseURL = 'https://tomsawyer2.xyz/api';
     // build
 }
 export default baseURL;
