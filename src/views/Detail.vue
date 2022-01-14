@@ -111,7 +111,7 @@ export default {
         await getArticleById({ id: this.id })
             .then((res) => {
                 setDetailId(this.id);
-                this.formData = res.data.data[0];
+                this.formData = res.data.data;
                 this.formData.tagsForShow = this.formData.tags.split('-');
             })
             .catch((err) => {

@@ -7,6 +7,20 @@
 </template>
 
 <style lang="less" scoped>
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: hsla(220, 4%, 58%, 0.5);
+    transition: background-color 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(107, 105, 105);
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
