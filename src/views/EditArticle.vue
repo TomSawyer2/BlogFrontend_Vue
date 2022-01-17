@@ -119,7 +119,7 @@ export default {
         this.height = document.body.clientHeight;
         await getArticleById({ id: this.$route.params.id })
             .then((res) => {
-                const data = res.data.data[0];
+                const data = res.data.data;
                 this.formData.tags = data.tags.split('-');
                 this.formData.title = data.title;
                 this.formData.content = data.content;
