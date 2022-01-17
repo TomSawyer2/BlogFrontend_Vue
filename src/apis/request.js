@@ -78,7 +78,7 @@ Axios.interceptors.response.use(
 
             case ERROR_CODE.QUERY_ARTICLE_ERR:
                 message.error('查询文章不存在');
-                break;
+                return res;
 
             case ERROR_CODE.QUERY_ARTICLE_BY_TAG_ERR:
                 message.error('查询文章错误');

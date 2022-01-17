@@ -81,7 +81,7 @@ export default {
             this.$router.push({ path: '/editArticle', name: 'EditArticle', params: { id: item.id } });
         },
         toDetail(item) {
-            this.$router.push({ path: '/detail', name: 'Detail', params: { id: item.id } });
+            this.$router.push({ path: `/detail/${item.id}`, name: 'Detail', params: { id: item.id } });
         },
         async toLike(item) {
             try {

@@ -25,7 +25,7 @@ const routes = [
         component: () => import('../views/EditArticle.vue')
     },
     {
-        path: '/detail',
+        path: '/detail/:id',
         name: 'Detail',
         component: () => import('../views/Detail.vue')
     },

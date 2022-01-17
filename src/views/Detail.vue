@@ -110,9 +110,13 @@ export default {
         this.height = document.body.clientHeight;
         await getArticleById({ id: this.id })
             .then((res) => {
-                setDetailId(this.id);
-                this.formData = res.data.data;
-                this.formData.tagsForShow = this.formData.tags.split('-');
+                if (res?.data?.status == 13) {
+                    this.$router.push('/index');
+                } else if (res?.sata?.status == 0) {
+                    setDetailId(this.id);
+                    this.formData = res.data.data;
+                    this.formData.tagsForShow = this.formData.tags.split('-');
+                }
             })
             .catch((err) => {
                 console.log(err);
@@ -142,8 +146,6 @@ export default {
 }
 .magicHidden .v-md-editor__right-area .v-md-editor__main .v-md-editor__editor-wrapper {
     display: none;
-}
-.sideCard {
 }
 @media screen and (max-width: 1050px) {
     .sideCard {
