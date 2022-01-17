@@ -112,7 +112,7 @@ export default {
             .then((res) => {
                 if (res?.data?.status == 13) {
                     this.$router.push('/index');
-                } else if (res?.sata?.status == 0) {
+                } else if (res?.data?.status == 0) {
                     setDetailId(this.id);
                     this.formData = res.data.data;
                     this.formData.tagsForShow = this.formData.tags.split('-');
