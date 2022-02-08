@@ -7,7 +7,7 @@
                         <p class="time" style="margin-left: 20px">{{ item.update_time ? item.update_time : '' }}</p>
                         <a-card hoverable class="articles" style="margin-left: 20px">
                             <a-card-meta @click="toDetail(item)">
-                                <a-avatar slot="avatar" :size="40" src="https://tomsawyer2.xyz/pics/venti.jpg" />
+                                <a-avatar slot="avatar" :size="40" src="https://blog.tomsawyer2.xyz/pics/venti.jpg" />
                                 <a slot="title" style="display: flex; font-size: 18px; margin-left: 30px">{{
                                     item.title
                                 }}</a>

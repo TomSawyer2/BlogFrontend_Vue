@@ -5,11 +5,11 @@ let baseURL = '';
 if (process.env.NODE_ENV === 'development') {
     // baseURL = 'https://tomsawyer2.xyz:4000/api';
     // baseURL = 'http://localhost:8082/api'
-    baseURL = 'https://tomsawyer2.xyz/api';
+    baseURL = 'https://blog.tomsawyer2.xyz/api';
 
     // dev
 } else {
-    baseURL = 'https://tomsawyer2.xyz/api';
+    baseURL = 'https://blog.tomsawyer2.xyz/api';
     // build
 }
 export default baseURL;

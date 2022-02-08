@@ -8,7 +8,7 @@
                             slot="avatar"
                             class="articles-avatar"
                             :size="40"
-                            src="https://tomsawyer2.xyz/pics/venti.jpg" />
+                            src="https://blog.tomsawyer2.xyz/pics/venti.jpg" />
                         <a slot="title" class="articles-title">{{ item.title }}</a>
                         <a slot="description" class="articles-description">{{
                             item.brief ? item.brief : '暂无简介~'

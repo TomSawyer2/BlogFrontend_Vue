@@ -5,7 +5,7 @@
                 <NavigationBar :current="currentTab" :key="7001" class="ps__navigationBar--PC"/>
                 <div class="ps__wrapper" :key="7002">
                     <div class="ps__wrapper--avatar">
-                        <a-avatar :size="150" src="https://tomsawyer2.xyz/pics/venti.jpg" class="ps__wrapper--avatar__img"/>
+                        <a-avatar :size="150" src="https://blog.tomsawyer2.xyz/pics/venti.jpg" class="ps__wrapper--avatar__img"/>
                         <span class="ps__wrapper--avatar__title">TomSawyer2</span>
                     </div>
                     <div class="ps__wrapper--stats__wrapper">

@@ -13,7 +13,7 @@
             <a-divider class="divider" :key="6004"/>
             <div class="personalInformation" :key="6005">
                 <p class="titleMobile">{{ title }}</p>
-                <a-avatar slot="avatar" :size="40" src="https://tomsawyer2.xyz/pics/venti.jpg" />
+                <a-avatar slot="avatar" :size="40" src="https://blog.tomsawyer2.xyz/pics/venti.jpg" />
                 <span class="username">TomSawyer2</span>
             </div>
             <a-divider class="divider" :key="6006"/>
