@@ -1,4 +1,5 @@
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const WebpackDeepScopeAnalysisPlugin = require('webpack-deep-scope-plugin').default;
 const IS_PROD = process.env.NODE_ENV === 'production'
 const path = require('path');
 
@@ -24,7 +25,8 @@ module.exports = {
         analyzerMode: 'static',
         reportFilename: './report.html',
         openAnalyzer: false
-      })
+      }),
+      new WebpackDeepScopeAnalysisPlugin()
     ]
   },
   chainWebpack(config) {
