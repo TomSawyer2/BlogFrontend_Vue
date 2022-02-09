@@ -41,7 +41,7 @@ export default {
                 message: '留言箱',
                 description: '留言箱纯匿名，模仿Tape制作~',
                 icon: <a-icon type="smile" style="color: #108ee9" />,
-                duration: 3
+                duration: 1
             });
         }, 1000);
         this.messages = (await getAllMessages()).data.data;

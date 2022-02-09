@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         getCodingTime() {
-            jsonp('https://wakatime.com/share/@080678ef-f627-4d0e-9308-3c75228698b2/d887d3db-cb31-4c53-92ae-67e96a9e9ce8.json', null, (err, data) => {
+            jsonp('https://wakatime.com/share/@TomSawyer2/a1d80725-d4e4-4fe0-9627-9a01c7991ce7.json', null, (err, data) => {
                 if (err) {
                     console.log(err.message);
                 } else {

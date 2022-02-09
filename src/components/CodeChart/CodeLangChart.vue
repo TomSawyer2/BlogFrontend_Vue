@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import jsonp from 'jsonp';
+import jsonp from "jsonp";
 export default {
     name: 'CodeLangChart',
     data() {
@@ -19,8 +19,8 @@ export default {
     methods: {
         getCodingLanguage() {
             jsonp(
-                'https://wakatime.com/share/@080678ef-f627-4d0e-9308-3c75228698b2/dd3a3ad1-42c3-4a2b-aee2-08cb4b129fd0.json',
-                null,
+                'https://wakatime.com/share/@TomSawyer2/e938f6f0-c95a-4ec6-81a2-b5faa9cd54f5.json',
+                { format: 'jsonp' },
                 (err, data) => {
                     if (err) {
                         console.log(err.message);

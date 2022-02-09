@@ -11,8 +11,8 @@
         </a-card>
         <a-card title="联系博主" hoverable style="margin-top: 15px">
             <p style="margin-bottom: 5px">QQ: 6272867</p>
-            <p style="margin-bottom: 5px">Github: <a href="https://github.com/TomSawyer2">TomSawyer2</a></p>
-            <p style="margin-bottom: 5px">Gitee: <a href="https://gitee.com/hanserena">hanserena</a></p>
+            <p style="margin-bottom: 5px">Github: <a href="https://github.com/TomSawyer2" target="_blank">TomSawyer2</a></p>
+            <p style="margin-bottom: 5px">Gitee: <a href="https://gitee.com/hanserena" target="_blank">hanserena</a></p>
         </a-card>
     </div>
 </template>
