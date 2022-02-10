@@ -169,7 +169,7 @@ export default {
         async getTempArticle() {
             try {
                 this.tempArticle = (await searchTempArticle()).data.data;
-                if(this.tempArticle.haveTemp == 1) {
+                if(this.tempArticle.haveTemp == '1') {
                     setTimeout(() => {
                         this.visibleGetTemp = true;
                     }, 500);
