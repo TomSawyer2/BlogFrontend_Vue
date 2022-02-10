@@ -31,6 +31,7 @@
                 v-model="formData.content"
                 style="position: fixed; bottom: 0px"
                 height="330px"
+                @change="handleInputChange"
                 @save="submit"></v-md-editor>
         </a-form>
         <a-modal v-model="visibleTemp" title="草稿箱" on-ok="handleOk">
@@ -54,6 +55,8 @@
 <script>
 import { addArticle, getAllTags, addTag, updateTempArticle, deleteTempArticle, searchTempArticle } from '../apis'
 import { timeFormat } from '../utils/format.js'
+import { removeArticle, setArticle, getArticle } from '../utils/storage.js'
+
 export default {
     name: 'AddArticle',
     data() {
@@ -86,7 +89,8 @@ export default {
             updateLoading: false,
             tempArticle: {},
             isEditingTemp: 0,
-            show: false
+            show: false,
+            textLength: 0
         };
     },
     methods: {
@@ -96,6 +100,7 @@ export default {
                 await addArticle(this.formData)
                     .then(() => {
                         this.$message.success('文章更新成功');
+                        removeArticle();
                     })
                     .catch((err) => {
                         console.log(err);
@@ -148,12 +153,14 @@ export default {
             }
         },
         handleCancel() {
+            removeArticle();
             this.$router.push('/index');
         },
         async handleOk() {
             try{
                 await updateTempArticle({title: this.formData.title, content: this.formData.content, tags: this.formData.tags, brief: this.formData.brief});
                 this.$message.success('草稿提交成功');
+                removeArticle();
                 this.$router.push('/index');
             } catch(err) {
                 console.log(err);
@@ -161,7 +168,7 @@ export default {
         },
         async getTempArticle() {
             try {
-                this.tempArticle = (await searchTempArticle()).data.data[0];
+                this.tempArticle = (await searchTempArticle()).data.data;
                 if(this.tempArticle.haveTemp == 1) {
                     setTimeout(() => {
                         this.visibleGetTemp = true;
@@ -191,15 +198,24 @@ export default {
             } catch(err) {
                 console.log(err);
             }
+        },
+        handleInputChange(text) {
+            const currentLength = text.length;
+            if (currentLength - this.textLength > 10) {
+                removeArticle();
+                setArticle(text);
+            }
         }
     },
     async mounted() {
         setTimeout(() => {
             this.show = true;
-        }, 1000);
+        }, 500);
         this.height = document.body.clientHeight;
         await this.getAllTagsFunc();
         await this.getTempArticle();
+        const text = getArticle();
+        if (text.length > 0) this.formData.content = text;
     }
 };
 </script>
