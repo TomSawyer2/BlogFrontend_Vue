@@ -39,6 +39,7 @@
 <style>
 ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 5px;

@@ -17,7 +17,7 @@
                 style="display:inline-block;text-decoration:none;height:20px;line-height:20px;color:#939393;"
             >浙ICP备2021032523</a>
         </div>
-        <div>
+        <!-- <div>
             <span style="color: gray">
                 本网站由
                 <a
@@ -27,7 +27,7 @@
                     <img style="height: 50px;width: 50px" src="../../assets/youpaiyun.png" />
                 </a>提供CDN加速/云存储服务
             </span>
-        </div>
+        </div> -->
     </div>
 </template>
 
