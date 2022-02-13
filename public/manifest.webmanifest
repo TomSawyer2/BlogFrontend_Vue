@@ -1,8 +1,8 @@
 {
     "name": "博客 - TomSawyer2",
     "short_name": "博客",
-    "theme_color": "#7CFCFE",
-    "background_color": "#7CFCFE",
+    "theme_color": "#66CCFF",
+    "background_color": "#66CCFF",
     "description": "博客",
     "display": "standalone",
     "display_override": ["minimal-ui", "standalone", "fullscreen"],
