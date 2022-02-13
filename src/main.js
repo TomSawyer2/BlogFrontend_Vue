@@ -9,6 +9,12 @@ import './plugins/vcolorpicker.js';
 
 Vue.config.productionTip = false;
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js', {
+        scope: '/'
+    });
+}
+
 new Vue({
     router,
     store,
