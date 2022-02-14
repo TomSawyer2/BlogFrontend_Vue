@@ -25,3 +25,5 @@ export { default as AppstoreOutline } from '@ant-design/icons/lib/outline/Appsto
 export { default as PlusOutline } from '@ant-design/icons/lib/outline/PlusOutline';
 
 export { default as SmileOutline } from '@ant-design/icons/lib/outline/SmileOutline';
+
+export { default as QrcodeOutline } from '@ant-design/icons/lib/outline/QrcodeOutline';

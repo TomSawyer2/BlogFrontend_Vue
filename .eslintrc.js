@@ -11,6 +11,7 @@ module.exports = {
     rules: {
         'no-debugger': 'off',
         'comma-dangle': [2, 'never'],
-        'space-before-function-paren': ['warn', 'never']
+        'space-before-function-paren': ['warn', 'never'],
+        "no-unused-vars": "off"
     }
 };

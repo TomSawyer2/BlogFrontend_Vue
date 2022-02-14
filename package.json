@@ -36,6 +36,7 @@
     "echarts-wordcloud": "^2.0.0",
     "hljs": "^6.2.3",
     "mixins": "0.0.1",
+    "qrcode": "^1.5.0",
     "vcolorpicker": "^1.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

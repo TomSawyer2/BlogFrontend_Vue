@@ -2,13 +2,29 @@
     <div v-if="show">
         <div class="trans">
             <transition-group name="slide-fade">
-                <a-button shape="circle" icon="left" size="large" class="backBtn" @click="back" :key="5001" />
+                <a-button
+                    shape="circle"
+                    icon="left"
+                    size="large"
+                    class="backBtn"
+                    @click="back"
+                    :key="5001"
+                />
+                <a-button
+                    shape="circle"
+                    icon="qrcode"
+                    size="large"
+                    class="shareBtn"
+                    @click="toShare"
+                    :key="5100"
+                />
                 <a-row
                     type="flex"
                     justify="center"
                     class="detailScoped"
                     :style="{ height: height + 'px', alignContent: 'center' }"
-                    :key="5002">
+                    :key="5002"
+                >
                     <a-col :span="14">
                         <a-card class="mainCard trans" :style="{ maxHeight: height - 50 + 'px' }">
                             <transition name="slide-fade">
@@ -20,20 +36,25 @@
                                         height: height - 90 + 'px'
                                     }"
                                     v-model="formData.content"
-                                    left-toolbar=""
-                                    right-toolbar="toc" />
+                                    left-toolbar
+                                    right-toolbar="toc"
+                                />
                             </transition>
                         </a-card>
                     </a-col>
                     <a-col :span="5" class="sideCard">
-                        <a-card class="mainCard" :style="{ maxHeight: height - 50 + 'px', marginLeft: 20 + 'px' }">
+                        <a-card
+                            class="mainCard"
+                            :style="{ maxHeight: height - 50 + 'px', marginLeft: 20 + 'px' }"
+                        >
                             <SideCard
                                 :articleDetail="formData"
                                 :style="{
                                     maxHeight: height - 90 + 'px',
                                     overflowY: 'hidden',
                                     height: height - 90 + 'px'
-                                }" />
+                                }"
+                            />
                         </a-card>
                     </a-col>
                 </a-row>
@@ -42,14 +63,16 @@
                     justify="center"
                     class="detailScopedMobile"
                     :style="{ height: height + 'px', alignContent: 'center', flexDirection: 'column' }"
-                    :key="5003">
+                    :key="5003"
+                >
                     <a-col :span="24">
                         <v-md-editor
                             class="magicHidden"
                             :style="{ maxHeight: height - 20 + 'px', overflowY: 'hidden', height: height - 100 + 'px' }"
                             v-model="formData.content"
-                            left-toolbar=""
-                            right-toolbar="toc"></v-md-editor>
+                            left-toolbar
+                            right-toolbar="toc"
+                        ></v-md-editor>
                     </a-col>
                     <a-col :span="24">
                         <a-card
@@ -58,13 +81,17 @@
                                 position: 'fixed',
                                 maxHeight: height - 50 + 'px',
                                 bottom: 5 + 'px',
-                                width: '95%'
-                            }">
+                                width: 'calc(100vw - 20px)'
+                            }"
+                        >
                             <SideCard :articleDetail="formData" />
                         </a-card>
                     </a-col>
                 </a-row>
             </transition-group>
+            <a-modal class="qrcode" width="190px" height="180px" v-model="qrcodeVisible" :footer="null">
+                <img :src="imgUrl" />
+            </a-modal>
         </div>
     </div>
 </template>
@@ -73,6 +100,8 @@
 import { getArticleById } from '../apis';
 import SideCard from '@/components/SideCard/SideCard.vue';
 import { setDetailId, getDetailId, removeDetailId } from '@/utils/storage.js';
+import QRCode from 'qrcode';
+
 export default {
     name: 'Detail',
     components: { SideCard },
@@ -87,13 +116,26 @@ export default {
             },
             height: 100,
             id: -1,
-            show: false
+            show: false,
+            imgUrl: null,
+            qrcodeVisible: false
         };
     },
     methods: {
         back() {
             this.$router.push('/index');
             removeDetailId();
+        },
+        toShare() {
+            let url = location.href;
+            QRCode.toDataURL(url)
+                .then(res => {
+                    this.imgUrl = res;
+                    this.qrcodeVisible = true;
+                })
+                .catch(err => {
+                    console.error(err);
+                });
         }
     },
     async mounted() {
@@ -144,8 +186,24 @@ export default {
     top: 50px;
     z-index: 1000;
 }
-.magicHidden .v-md-editor__right-area .v-md-editor__main .v-md-editor__editor-wrapper {
+.shareBtn {
+    position: fixed;
+    width: 60px !important;
+    height: 60px !important;
+    right: 50px;
+    bottom: 50px;
+    z-index: 1000;
+}
+.magicHidden
+    .v-md-editor__right-area
+    .v-md-editor__main
+    .v-md-editor__editor-wrapper {
     display: none;
+}
+.qrcode {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 @media screen and (max-width: 1050px) {
     .sideCard {
@@ -160,6 +218,10 @@ export default {
     .backBtn {
         left: 10px;
         top: 10px;
+    }
+    .shareBtn {
+        bottom: 100px;
+        right: 10px;
     }
 }
 .trans {
