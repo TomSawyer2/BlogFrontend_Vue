@@ -14,7 +14,7 @@ jobs:
             - node_modules
       - run: npm run build
       - run: echo '部署开始'
-      - run: sudo apt-get update && sudo apt-get install rsync && sudo apt-get install sshpass
+      - run: sudo apt-get update && sudo apt-get install rsync
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -22,12 +22,12 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "ca:63:df:7f:17:7e:e8:b3:43:cd:8f:e1:a1:50:e5:76"
-      - run: echo yes
+      - run: echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
       - deploy:
           name: deploy
           command: |
             if [ "${CIRCLE_BRANCH}" = "main" ]; then
-              sshpass -p $SSH_PWD rsync -avc -e 'ssh -p 2222 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' build $SSH_USER@$SSH_IP:/home/hanserena/Blog/
+              rsync -e 'ssh -p 2222 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' -avc build $SSH_USER@$SSH_IP:/home/hanserena/Blog/
             else
               echo "Not main branch"
             fi
