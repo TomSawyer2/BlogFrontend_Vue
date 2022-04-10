@@ -29,7 +29,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" = "main" ]; then
               rsync -e 'ssh -p 2222' -avc build $SSH_USER@$SSH_IP:/home/hanserena/Blog/
             else
-              echo "Not main branch"
+              echo "Not main"
             fi
       - run: echo '部署完毕'
 workflows:
