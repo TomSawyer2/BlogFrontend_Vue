@@ -34,12 +34,9 @@ jobs:
       - run: echo '部署完毕'
 workflows:
   version: 2
-  scheduled-workflow:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
+  commit-workflow::
+    jobs:
+      - build:
           filters:
             branches:
               only: main
-    jobs:
-      - build
