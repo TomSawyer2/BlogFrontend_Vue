@@ -14,7 +14,7 @@ jobs:
             - node_modules
       - run: npm run build
       - run: echo '部署开始'
-      - run: sudo apt-get update && sudo apt-get install rsync
+      - run: sudo apt-get update && sudo apt-get install rsync && sudo apt-get install sshpass
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
