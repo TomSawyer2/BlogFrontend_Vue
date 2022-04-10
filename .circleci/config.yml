@@ -22,7 +22,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "ca:63:df:7f:17:7e:e8:b3:43:cd:8f:e1:a1:50:e5:76"
-      # - run: echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
+      # - run: echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts  
       - deploy:
           name: deploy
           command: |
