@@ -27,7 +27,7 @@ jobs:
           name: deploy
           command: |
             if [ "${CIRCLE_BRANCH}" = "main" ]; then
-              rsync -avc -e 'ssh -p 2222 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' build $SSH_USER@$SSH_IP:/home/hanserena/Blog/
+              sshpass -p $SSH_PWD rsync -avc -e 'ssh -p 2222 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' build $SSH_USER@$SSH_IP:/home/hanserena/Blog/
             else
               echo "Not main branch"
             fi
